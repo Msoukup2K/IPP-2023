@@ -1,5 +1,5 @@
 <?php
-
+//Je to jednoduché, musí se jen determinovat v jakém pořadí jaký typ, funkce na výpis můžu nechat
 ini_set('display_errors', 'stderr');
 
 
@@ -33,7 +33,6 @@ function write_param( string $param, int $order, string $type, XMLWriter $xw )
 	xmlwriter_text( $xw, $type);
 	xmlwriter_end_attribute( $xw );
 	xmlwriter_text( $xw , $param );
-	xmlwriter_end_element( $xw );
 
 }
 
@@ -60,10 +59,6 @@ function process_instruction(string $opc , XMLWriter $xw , int $order ,string ..
 		{
 			write_param( $param, $arg_order, 'var', $xw);
 		}
-		elseif( preg_match("/[a-zA-Z-_%!?#&*$][a-zA-Z-_%!?#&*$0-9]*/", $param) )
-		{
-			write_param( $param, $arg_order, 'label', $xw);
-		}
 		elseif( preg_match("/nil@nil/", $param ) )
 		{
 			write_param( 'nil', $arg_order , 'nil' , $xw);
@@ -83,9 +78,9 @@ function process_instruction(string $opc , XMLWriter $xw , int $order ,string ..
 			$string = explode( "@", $param, 2);
 			write_param($string[1], $arg_order, $string[0], $xw);
 		}
-		elseif( preg_match("/(LF|GF|TF)@[a-zA-Z-_%!?#&*$][a-zA-Z-_%!?#&*$0-9]*/", $param) )
+		elseif( preg_match("/[a-zA-Z-_%!?#&*$][a-zA-Z-_%!?#&*$0-9]*/", $param) )
 		{
-			write_param( $param, $arg_order, 'var', $xw);	
+			write_param( $param, $arg_order, 'label', $xw);
 		}
 		else
 		{
