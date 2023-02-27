@@ -180,6 +180,8 @@ while( !feof(STDIN) )
 			$third = $row[3];
 		}
 		$order++;
+
+		if( $first == false && $second )
 		if( in_array( $opc, ['CREATEFRAME', 'PUSHFRAME', 'POPFRAME', 'RETURN', 'BREAK']))
 		{
 			if( $first != false)
@@ -190,15 +192,51 @@ while( !feof(STDIN) )
 
 			process_instruction($opc, $xw, $order);
 		}
-		elseif( in_array( $opc, ['DPRINT', 'EXIT', 'JUMP', 'LABEL', 'WRITE', 'POPS', 'PUSHS', 'CALL', 'DEFVAR']))
-		{
-			if( $first == false)
-			{
-				fwrite( STDERR, "Instrukce" . $opc . "musí být aspoň jeden argument");
-				exit(23);
-			}
 
-			process_instruction($opc, $xw, $order,$first);
+		if( $first != false && $second == false && $third == false)
+		{
+			if(in_array( $opc, ['PUSHS', 'DEFVAR', 'POPS']))
+			{
+				$value[0] = [
+					'param' => $first,
+					'type' => 'var',
+				];
+			} 
+			elseif( in_array( $opc , ['JUMP', 'LABEL', 'CALL']))
+			{
+				$value[0] = [
+					'param' => $first,
+					'type' => 'label',
+				];
+			}
+			elseif( in_array( $opc, ['DPRINT', 'EXIT', 'CALL', 'WRITE']))
+			{
+				$value[0] = [
+					'param' => $first,
+					'type' => 'symb',
+				];
+				process_instruction($opc, $xw, $order,$first, 'symb');
+			}
+		}
+		elseif( $first != false && $second != false && $third == false)
+		{
+			if( in_array( $opc , ['MOVE','INT2CHAR','STRLEN', 'TYPE']))
+			{
+				$value[0] = [
+					'param' => $first,
+					'type' => 'var',
+				];
+				$value[1] = [
+					'param' => $second,
+					'type' => 'symb',
+				];
+				process_instruction($opc, $xw, $order,$value);
+			}
+			elseif( in_array( $opc, ['READ'] ) )
+			{
+				process_instruction($opc, $xw, $order,$value);
+			}
+		}
 
 		}
 		elseif( in_array( $opc , ['MOVE','INT2CHAR','STRLEN', 'TYPE']))
