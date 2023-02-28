@@ -29,19 +29,19 @@ class Tester {
 
   private function pass(string $name, int $level) {
     $this->passed++;
-    echo indentation($level) . green($name) . "\n";
+    echo(testwin . phpindentation($level) . green($name) . "\n");
   }
 
   private function fail(string $name, int $level) {
     $this->failed++;
-    echo indentation($level) . red($name) . "\n";
+    echo testwin . phpindentation($level) . red($name) . "\n";
   }
 
   private function runTest(string $name, int $level = 0) {
     $src = "./tests/$name.src";
     $out = "./tests/$name.out";
 
-    $cmd = "{$this->php} parse.php < $src > tmp/out.xml 2>/dev/null";
+    $cmd = "{$this->php} parse.php < $src > tmp/out.xml";
     $output = null;
     $rc = null;
     exec($cmd, $output, $rc);
@@ -77,7 +77,7 @@ class Tester {
 
   private function testDir(string $path, int $level) {
     if ($path !== "") {
-      echo indentation($level) . blue($path) . "\n";
+      echo testwin . phpindentation($level) . blue($path) . "\n";
     }
     $dir = opendir("./tests/$path");
     while ($file = readdir($dir)) {
@@ -98,7 +98,7 @@ class Tester {
   private function setPhpExecutable() {
     $output = null;
     $rc = null;
-    exec("which php8.1 2>/dev/null", $output, $rc);
+    exec("where.exe php8.1 2>nul", $output, $rc);
     if ($rc !== 0) {
       $this->php = "php";
     }
@@ -107,7 +107,7 @@ class Tester {
   function runTests(string $start = "") {
     $this->setPhpExecutable();
 
-    exec("mkdir -p tmp");
+    exec("if not exist tmp mkdir tmp");
 
     if ($start !== "") {
       if (is_dir("./tests/$start")) {
@@ -126,7 +126,7 @@ class Tester {
     $failedStr = $this->failed === 0 ? green("no failed tests") : red("{$this->failed} failed tests");
     $passedStr = $this->passed === 0 ? red("no passed tests") : green("{$this->passed} passed tests");
     echo "Tests finished with $failedStr and $passedStr";
-    exec("rm -r tmp");
+    exec("rd /s /q tmp");
   }
 }
 

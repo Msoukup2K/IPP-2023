@@ -27,7 +27,7 @@ function print_help(): void
 
 function write_param( string $param, int $order, string $type, XMLWriter $xw )
 {
-	//echo($param);
+	
 	xmlwriter_start_element( $xw, 'arg' . $order);
 	xmlwriter_start_attribute( $xw, 'type' );
 	xmlwriter_text( $xw, $type);
@@ -36,7 +36,7 @@ function write_param( string $param, int $order, string $type, XMLWriter $xw )
 
 }
 
-function process_instruction(string $opc , XMLWriter $xw , int $order ,string ...$params): void
+function process_instruction(string $opc , XMLWriter $xw , int $order , array $params = NULL): void
 {
 	$arg_order = 0;
 	xmlwriter_start_element( $xw, 'instruction');
@@ -46,7 +46,7 @@ function process_instruction(string $opc , XMLWriter $xw , int $order ,string ..
 	xmlwriter_start_attribute( $xw, 'opcode' );
 	xmlwriter_text( $xw, $opc );
 	xmlwriter_end_attribute( $xw );
-	if( empty($params) )
+	if( $params == NULL )
 	{
 		xmlwriter_end_element( $xw );
 		return;
@@ -55,42 +55,79 @@ function process_instruction(string $opc , XMLWriter $xw , int $order ,string ..
 	foreach( $params as $param )
 	{
 		$arg_order++;
-		if( preg_match("/(LF|GF|TF)@[a-zA-Z-_%!?#&*$][a-zA-Z-_%!?#&*$0-9]*/", $param))
+		if( $param['type'] == 'var' )
 		{
-			write_param( $param, $arg_order, 'var', $xw);
+			if( preg_match("/(LF|GF|TF)@[a-zA-Z-_%!?#&*$][a-zA-Z-_%!?#&*$0-9]*/", $param['param']))
+			{
+				write_param( $param['param'], $arg_order, 'var', $xw);
+			}
+			else
+			{
+				fwrite( STDERR, $param['param'] . " je špatně zapsán");
+				exit(23);
+			}
 		}
-		elseif( preg_match("/nil@nil/", $param ) )
+		elseif( $param['type'] == 'label' )
 		{
-			write_param( 'nil', $arg_order , 'nil' , $xw);
+			if( preg_match("/^(?!@)[a-zA-Z-_%!?#&*$][a-zA-Z-_%!?#&*$0-9]*$/", $param['param']) )
+			{
+				write_param( $param['param'], $arg_order, 'label', $xw);
+			}
+			else
+			{
+				fwrite( STDERR, $param['param'] . " je špatně zapsán");
+				exit(23);
+			}
 		}
-		elseif( preg_match("/bool@(true|false)/", $param ) )
+		elseif( $param['type'] == 'type' )
 		{
-			$bool = explode( "@", $param);
-			write_param( $bool[1], $arg_order, $bool[0], $xw);
+			if( preg_match( "/(string|int|bool)/", $param['param']) )
+			{
+				write_param( $param['param'], $arg_order, 'type', $xw);
+			}
+			else
+			{
+				fwrite( STDERR, $param['param'] . " je špatně zapsán");
+				exit(23);
+			}
+			
 		}
-		elseif( preg_match("/int@(-)?(0|[1-9][0-9]*|0[0-7]*|[0-9a-fA-F]+)/", $param) )
+		elseif( $param['type'] == 'symb' )
 		{
-			$int = explode( "@", $param);
-			write_param( $int[1], $arg_order, $int[0], $xw);
+			if( preg_match("/nil@nil$/", $param['param'] ) )
+			{
+				write_param( 'nil', $arg_order , 'nil' , $xw);
+			}
+			elseif( preg_match("/bool@(true|false)/", $param['param'] ) )
+			{
+				$bool = explode( "@", $param['param']);
+				write_param( $bool[1], $arg_order, $bool[0], $xw);
+			}
+			elseif( preg_match("/int@([-+])?(0|[1-9][0-9]*|0[oO][0-7]*|0[xX][0-9a-fA-F]+)/", $param['param']) )
+			{
+				$int = explode( "@", $param['param']);
+				write_param( $int[1], $arg_order, $int[0], $xw);
+			}
+			elseif( preg_match("/string@([^\s#\\\]*(\\\[0-9]{3})*)*(?<!\\\\)$/", $param['param'] ) ) 
+			{
+				$string = explode( "@", $param['param'], 2);
+				write_param($string[1], $arg_order, $string[0], $xw);
+			}
+			elseif( preg_match("/(LF|GF|TF)@[a-zA-Z-_%!?#&*$][a-zA-Z-_%!?#&*$0-9]*/", $param['param']) )
+			{
+				write_param( $param['param'], $arg_order, 'var', $xw);
+			}
+			else
+			{
+				fwrite( STDERR, $param['param'] . " je špatně zapsán");
+				exit(23);
+			}
 		}
-		elseif( preg_match("/string@([^\s#\\\]*(\\\[0-9]{3})*)*/", $param ) ) 
-		{
-			$string = explode( "@", $param, 2);
-			write_param($string[1], $arg_order, $string[0], $xw);
-		}
-		elseif( preg_match("/[a-zA-Z-_%!?#&*$][a-zA-Z-_%!?#&*$0-9]*/", $param) )
-		{
-			write_param( $param, $arg_order, 'label', $xw);
-		}
-		else
-		{
-			fwrite( STDERR, $param . " je špatně zapsán");
-			exit(23);
-		}
+		
 		xmlwriter_end_element( $xw );
 	}
 
-
+	xmlwriter_end_element( $xw );
 }
 
 function comment_out( string $line ): string
@@ -104,7 +141,8 @@ function findHeader( string $pline, XMLWriter $xw): bool
 	{
 		return false;
 	}
-	if( preg_match( "/.IPPcode23/i", $pline))
+
+	if( preg_match( "/^(\s*)\.IPPcode23(\s*)$/i", $pline))
 		{
 			xmlwriter_start_element( $xw, 'program' ); //Po nalezení hlavičky začíná kořenový element program s atributem language a hodnotou ippcode22
 			xmlwriter_start_attribute( $xw, 'language' );
@@ -140,7 +178,7 @@ xmlwriter_start_document($xw, '1.0', 'UTF-8');
 
 while( !feof(STDIN) )
 {
-	
+	$value = [];
 	$line = fgets( STDIN );
 	$line = preg_replace('/^\n+|^[\t\s]*\n+/m','',$line);
 
@@ -153,6 +191,7 @@ while( !feof(STDIN) )
 	}
 	else
 	{
+		
 		$pline = preg_replace('/\s+/', ' ', $pline);
 
 		$row = explode(" ", trim($pline, "\n"));
@@ -180,27 +219,35 @@ while( !feof(STDIN) )
 			$third = $row[3];
 		}
 		$order++;
-
-		if( $first == false && $second )
-		if( in_array( $opc, ['CREATEFRAME', 'PUSHFRAME', 'POPFRAME', 'RETURN', 'BREAK']))
+		
+		if( !in_array( $opc , ['CREATEFRAME', 'PUSHFRAME', 'POPFRAME', 'RETURN', 'BREAK','PUSHS', 'DEFVAR', 'POPS', 'JUMP', 'LABEL', 'CALL',
+		'DPRINT', 'EXIT', 'CALL', 'WRITE', 'MOVE','INT2CHAR','STRLEN', 'TYPE', 'NOT', 'READ', 'JUMPIFNEQ', 'JUMPIFEQ', 'SETCHAR',
+		'GETCHAR', 'CONCAT', 'STRI2INT', 'AND', 'OR', 'LT', 'GT', 'EQ', 'IDIV', 'MUL', 'SUB', 'ADD'] ))
 		{
-			if( $first != false)
+			fwrite( STDERR, "Instrukce " . $opc . " není povolena nebo špatně zapsána.");
+			exit(22);
+		}
+		
+		if($first === false && $second === false && $third === false )
+		{
+			if( in_array( $opc, ['CREATEFRAME', 'PUSHFRAME', 'POPFRAME', 'RETURN', 'BREAK']) )
+				process_instruction($opc, $xw, $order);
+			else
 			{
-				fwrite( STDERR, "Instruce " . $opc . "musí být bez argumentů");
+				fwrite( STDERR, "Instrukce " . $opc . " je špatně zapsaná nebo má špatný počet argumentů. ");
 				exit(23);
 			}
-
-			process_instruction($opc, $xw, $order);
 		}
-
-		if( $first != false && $second == false && $third == false)
+		elseif( $first !== false && $second === false && $third === false)
 		{
-			if(in_array( $opc, ['PUSHS', 'DEFVAR', 'POPS']))
+			if(in_array( $opc, ['DEFVAR', 'POPS']))
 			{
 				$value[0] = [
 					'param' => $first,
 					'type' => 'var',
 				];
+				process_instruction($opc, $xw, $order,$value);
+
 			} 
 			elseif( in_array( $opc , ['JUMP', 'LABEL', 'CALL']))
 			{
@@ -208,19 +255,26 @@ while( !feof(STDIN) )
 					'param' => $first,
 					'type' => 'label',
 				];
+				process_instruction($opc, $xw, $order,$value);
+
 			}
-			elseif( in_array( $opc, ['DPRINT', 'EXIT', 'CALL', 'WRITE']))
+			elseif( in_array( $opc, ['PUSHS', 'DPRINT', 'EXIT', 'CALL', 'WRITE']))
 			{
 				$value[0] = [
 					'param' => $first,
 					'type' => 'symb',
 				];
-				process_instruction($opc, $xw, $order,$first, 'symb');
+				process_instruction($opc, $xw, $order,$value);
+			}
+			else
+			{
+				fwrite( STDERR, "Instrukce " . $opc . " je špatně zapsaná nebo má špatný počet argumentů. ");
+				exit(23);
 			}
 		}
-		elseif( $first != false && $second != false && $third == false)
+		elseif( $first !== false && $second !== false && $third === false)
 		{
-			if( in_array( $opc , ['MOVE','INT2CHAR','STRLEN', 'TYPE']))
+			if( in_array( $opc , ['MOVE','INT2CHAR','STRLEN', 'TYPE', 'NOT']))
 			{
 				$value[0] = [
 					'param' => $first,
@@ -234,37 +288,71 @@ while( !feof(STDIN) )
 			}
 			elseif( in_array( $opc, ['READ'] ) )
 			{
+				$value[0] = [
+					'param' =>  $first,
+					'type' => 'var',
+				];
+				$value[1] = [
+					'param' => $second,
+					'type' => 'type',
+				];
+
 				process_instruction($opc, $xw, $order,$value);
 			}
-		}
-
-		}
-		elseif( in_array( $opc , ['MOVE','INT2CHAR','STRLEN', 'TYPE']))
-		{
-			if( $second == false)
+			else
 			{
-				fwrite( STDERR, "Instrukce" . $opc . "musí být aspoň dva argumenty");
+				fwrite( STDERR, "Instrukce " . $opc . " je špatně zapsaná nebo má špatný počet argumentů. ");
 				exit(23);
 			}
-
-			process_instruction($opc, $xw, $order,$first, $second);
-
 		}
-		elseif( in_array( $opc , ['JUMPIFNEQ', 'JUMPIFEQ', 'SETCHAR', 'GETCHAR', 'CONCAT', 'STRI2INT', 'AND', 'OR', 'NOT', 'LT', 'GT', 'EQ', 'IDIV', 'MUL', 'SUB', 'ADD']))
+		elseif( $first !== false && $second !== false && $third !== false)
 		{
-			if( $third == false)
+			
+			if( in_array( $opc, ['JUMPIFNEQ', 'JUMPIFEQ']) )
 			{
-				fwrite( STDERR, "Instrukce" . $opc . "musí být aspoň tři argumenty");
+				$value[0] = [
+					'param' => $first,
+					'type' => 'label',
+				];
+				$value[1] = [
+					'param' => $second,
+					'type' => 'symb',
+				];
+				$value[2] = [
+					'param' => $third,
+					'type' => 'symb',
+				];
+				process_instruction($opc, $xw, $order,$value);
+
+			}
+			elseif( in_array( $opc, ['SETCHAR','GETCHAR', 'CONCAT', 'STRI2INT', 'AND', 'OR', 'LT', 'GT', 'EQ', 'IDIV', 'MUL', 'SUB', 'ADD']))
+			{
+				$value[0] = [
+					'param' => $first,
+					'type' => 'var',
+				];
+				$value[1] = [
+					'param' => $second,
+					'type' => 'symb',
+				];
+				$value[2] = [
+					'param' => $third,
+					'type' => 'symb',
+				];
+
+				process_instruction($opc, $xw, $order,$value);
+			}
+			else
+			{
+				fwrite( STDERR, "Instrukce " . $opc . " je špatně zapsaná nebo má špatný počet argumentů. ");
 				exit(23);
 			}
-
-			process_instruction($opc, $xw, $order,$first, $second, $third);
-
+				
 		}
 		else
 		{
-			fwrite( STDERR, "Instrukce " . $opc . " je neznámý nebo chybný operační kód ve zdrojovém kódu zapsaném v IPPcode23. ");
-			exit(22);
+			fwrite( STDERR, "Instrukce " . $opc . " má chybný počet argumentů");
+			exit(23);
 		}
 
 	}
