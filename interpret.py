@@ -40,7 +40,7 @@ class Instruction:
 
     def addArgument(self, order, argument):
         if not re.match("arg[123]", order):
-            sys.stderr.write("Instruction has maximum of 3 arguments")
+            sys.stderr.write("Instruction has maximum of 3 arguments, in format 'arg1', 'arg2', 'arg3' ")
             sys.exit(32)
 
         if order in self.argdict:
@@ -88,10 +88,15 @@ class Interpreter:
                 sys.stderr.write("Frame doesn't exist")
                 sys.exit(55)
             if variable.value.name not in self.TF.keys():
-                sys.stderr.write("Variable doesn't exit")
+                sys.stderr.write("Variable doesn't exist")
                 sys.exit(54)
             self.TF.update({variable.value.name: value.text if value != None else resultval})
-
+        else:
+            if len(self.LF) == 0:
+                sys.stderr.write("Frame doesn't exist")
+                sys.exit(55)
+            sys.stderr.write("Variable doesn't exist")
+            sys.exit(54)
     def getFromFrame(self, variable):
         if variable.frame == "GF":
             if variable.value.name not in self.GF.keys():
@@ -107,9 +112,12 @@ class Interpreter:
                 sys.exit(54)
             return self.TF.get(variable.value.name)
         elif variable.frame == "LF":
+            if len(self.LF) == 0:
+                sys.stderr.write("Frame doesn't exist")
+                sys.exit(55)
             for tframe in self.LF:
                 if variable.value.name not in tframe.keys():
-                    sys.stderr.write("Variable doesn't exit")
+                    sys.stderr.write("Variable doesn't exist")
                     sys.exit(54)
                 else:
                     value = tframe.get(variable.value.name)
@@ -134,11 +142,14 @@ class Interpreter:
                 sys.exit(32)
             i += 1
     def intConversion(self, op):
+        if( op == None):
+            sys.stderr.write("Value error, variable is unset")
+            sys.exit(56)
         try:
             op = int(op)
         except ValueError as e:
             sys.stderr.write(f"Value error {e}")
-            sys.exit(53)
+            sys.exit(32)
         return op
     def interpretZero(self, instruction, position):
         if instruction.code == "RETURN":
@@ -151,7 +162,7 @@ class Interpreter:
             return position
         elif instruction.code == "PUSHFRAME":
             if self.TF == None:
-                sys.stdder.write("Frame doesn't exist")
+                sys.stderr.write("Frame doesn't exist")
                 sys.exit(55)
             else:
                 newFrame = self.TF
@@ -164,30 +175,48 @@ class Interpreter:
                 sys.exit(55)
             else:
                 self.TF = self.LF.pop()
+            return position
         elif instruction.code == "BREAK":
             sys.stderr.write("TADY JE VYPIS ORDER, což je index v listu, počet vykonaných instrukcí a obsahe ramců")
             pass
+        else:
+            sys.stderr.write("Wrong number of arguments")
+            sys.exit(32)
 
     def interpretOne(self, instruction, position):
+        if not 'arg1' in instruction.argdict:
+            sys.stderr.write("Cannot interpret instruction without first argument 'arg1' ")
+            sys.exit(32)
         arg1 = instruction.argdict['arg1']
+        
         if instruction.code == "DEFVAR":
             if not arg1.checkArgType("VAR"):
                 sys.stderr.write(f"Instruction {instruction.code} requires type var")
                 sys.exit(53)
+                
             if arg1.frame == "GF":
-                if arg1.value in self.GF.keys():
-                    sys.stderr.write("Variable is in a frame already")
+                if arg1.value.name in self.GF.keys():
+                    sys.stderr.write("Cannot redefine a variable")
                     sys.exit(52)
                 self.GF.update({arg1.value.name: None})
             elif arg1.frame == "TF":
                 if self.TF == None:
                     sys.stderr.write("Frame doesn't exist")
                     sys.exit(55)
-                if arg1.value in self.TF.keys():
-                    sys.stderr.write("Cannot redecleare a variable")
+                if arg1.value.name in self.TF.keys():
+                    sys.stderr.write("Cannot redefine a variable")
                     sys.exit(52)
                 self.TF.update({arg1.value.name: None})
-
+            elif arg1.frame == "LF":
+                if len(self.LF) == 0:
+                    sys.stderr.write("No frames on stack")
+                    sys.exit(55)
+                for tframe in self.LF:
+                    if arg1.value.name in tframe.keys():
+                        sys.stderr.write("Cannot redefine a variable")
+                        sys.exit(52)
+                self.LF[0].update({arg1.value.name: None})
+    
             return position
 
         elif instruction.code == "LABEL":
@@ -232,9 +261,15 @@ class Interpreter:
         elif instruction.code == "WRITE":
             if arg1.checkArgType("VAR"):
                 string = self.getFromFrame(arg1)
+                if( string == "nil"):
+                    print("", end="")
+                else:
+                    print(string,end="")
+                return position
             else:
                 if arg1.checkArgType("NIL"):
-                    string = ""
+                    print("", end="")
+                    return position
                 elif arg1.checkArgType("BOOL"):
                     if arg1.text.upper == 'TRUE':
                         string = "true"
@@ -242,10 +277,9 @@ class Interpreter:
                         string = "false"
                 else:
                     string = arg1.text
-
+                    
             string = codecs.decode(string, 'unicode_escape')
-
-            print(string, end='')
+            print(string,end="")
 
             return position
 
@@ -281,20 +315,37 @@ class Interpreter:
                 dprint = self.getFromFrame(arg1)
                 sys.stderr.write(dprint)
             return position
+        else:
+            sys.stderr.write("Wrong number of arguments")
+            sys.exit(32)
 
     #TODO předělat před odevzdáním ty kontroly xml
     def interpretTwo(self, instruction, position):
         arg1 = instruction.argdict['arg1']
         arg2 = instruction.argdict['arg2']
         if instruction.code == "READ":
-            if not arg1.checkArgType("VAR") or not arg2.checkSymb():
+            if not arg1.checkArgType("VAR") or not arg2.checkArgType("TYPE"):
                 sys.stderr.write(f"Instruction {instruction.code} has bad type of arguments")
                 sys.exit(32)
 
-            variable = instruction.argdict.value()[0].getValue()
+            for i, item in enumerate(self.input):
+                try:
+                    value = int(item.strip())
+                    self.input.pop(i)
+                    break
+                except ValueError:
+                    pass
+                try:
+                    if item.strip().upper() == "TRUE" or item.strip().upper == "FALSE":
+                        value = item.strip().lower()
+                        self.input.pop(i)
+                        break
+                except ValueError:
+                    pass
+                value = item.strip()
+                self.input.pop(i)
 
-            f = open(self.input)
-           #TODO print(f.readlines())
+            self.setToFrame(variable=arg1, resultval=value)    
             return position
         elif instruction.code == "INT2CHAR":
             if not arg1.checkArgType("VAR") and not arg2.checkSymb():
@@ -322,7 +373,30 @@ class Interpreter:
             if not arg1.checkArgType("VAR") and not arg2.checkSymb():
                 sys.stderr.write(f"Instruction {instruction.code} has bad type of arguments")
                 sys.exit(32)
-
+            
+            if arg2.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg2)
+                
+            else:
+                op2 = arg2.text
+                
+                
+            if( op2 == None):
+                    value = 'nil'
+            else:
+                try:
+                    int(op2)
+                    value = "int"
+                except ValueError:
+                    value = 'string'
+                    try:
+                        if op2.upper() == "TRUE" or op2.upper == "FALSE":
+                            value = 'bool'
+                    except ValueError:
+                        pass
+                
+            self.setToFrame(arg1, resultval=value)
+            
             return position
 
         elif instruction.code == "MOVE":
@@ -338,6 +412,9 @@ class Interpreter:
                 sys.exit(32)
 
             return position
+        else:
+            sys.stderr.write("Wrong number of arguments")
+            sys.exit(32)
 
     def interpretThree(self, instruction, position):
         arg1 = instruction.argdict['arg1']
@@ -347,14 +424,21 @@ class Interpreter:
             if not arg1.checkArgType("VAR") or not arg2.checkSymb() or not arg2.checkSymb():
                 sys.stderr.write(f"Instruction {instruction.code} has bad arguments")
                 sys.exit(32)
+                
             if arg2.checkArgType("VAR"):
                 op1 = self.intConversion(self.getFromFrame(arg2))
             elif arg2.checkArgType("INT"):
                 op1 = self.intConversion(arg2.text)
+            else:
+                sys.stderr.write("Cannot use Add on diffent type than int")
+                sys.exit(53)
             if arg3.checkArgType("VAR"):
                 op2 = self.intConversion(self.getFromFrame(arg3))
             elif arg3.checkArgType("INT"):
                 op2 = self.intConversion(arg3.text)
+            else:
+                sys.stderr.write("Cannot use Add on diffent type than int")
+                sys.exit(53)
 
             result = op1 + op2
 
@@ -369,11 +453,17 @@ class Interpreter:
                 op1 = self.intConversion(self.getFromFrame(arg2))
             elif arg2.checkArgType("INT"):
                 op1 = self.intConversion(arg2.text)
+            else:
+                sys.stderr.write("Cannot use Sub on diffent type than int")
+                sys.exit(53)
             if arg3.checkArgType("VAR"):
                 op2 = self.intConversion(self.getFromFrame(arg3))
             elif arg3.checkArgType("INT"):
                 op2 = self.intConversion(arg3.text)
-
+            else:
+                sys.stderr.write("Cannot use Sub on diffent type than int")
+                sys.exit(53)
+                
             result = op1 - op2
 
             self.setToFrame(arg1, resultval=result)
@@ -387,10 +477,16 @@ class Interpreter:
                 op1 = self.intConversion(self.getFromFrame(arg2))
             elif arg2.checkArgType("INT"):
                 op1 = self.intConversion(arg2.text)
+            else:
+                sys.stderr.write("Cannot use Mul on diffent type than int")
+                sys.exit(53)
             if arg3.checkArgType("VAR"):
                 op2 = self.intConversion(self.getFromFrame(arg3))
             elif arg3.checkArgType("INT"):
                 op2 = self.intConversion(arg3.text)
+            else:
+                sys.stderr.write("Cannot use Mul on diffent type than int")
+                sys.exit(53)
 
             result = op1 * op2
 
@@ -405,10 +501,16 @@ class Interpreter:
                 op1 = self.intConversion(self.getFromFrame(arg2))
             elif arg2.checkArgType("INT"):
                 op1 = self.intConversion(arg2.text)
+            else:
+                sys.stderr.write("Cannot use Mul on diffent type than int")
+                sys.exit(53)
             if arg3.checkArgType("VAR"):
                 op2 = self.intConversion(self.getFromFrame(arg3))
             elif arg3.checkArgType("INT"):
                 op2 = self.intConversion(arg3.text)
+            else:
+                sys.stderr.write("Cannot use Mul on diffent type than int")
+                sys.exit(53)
 
             try:
                 result = op1 / op2
@@ -433,13 +535,59 @@ class Interpreter:
             if not arg1.checkArgType("VAR") or not arg2.checkSymb() or not arg2.checkSymb():
                 sys.stderr.write(f"Instruction {instruction.code} has bad arguments")
                 sys.exit(32)
+                
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+            else:
+                op1 = arg2.text
 
+            if arg3.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg3)
+            else:
+                op2 = arg3.text
+
+            if arg2.type == 'int' or arg3.type == 'int':
+                op1 = self.intConversion(op1)
+                op2 = self.intConversion(op2)
+                 
+			if op1 is op2:
+				self.setToFrame(arg1, resultval="true")
+			else:
+				self.setToFrame(arg1, resultval="false")
+            
+            
             return position
         elif instruction.code == "AND":
             if not arg1.checkArgType("VAR") or not arg2.checkSymb() or not arg2.checkSymb():
                 sys.stderr.write(f"Instruction {instruction.code} has bad arguments")
                 sys.exit(32)
+            
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if( op1 == None):
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            elif arg2.checkArgType("BOOL"):
+                op1 = arg2.text
+            else:
+                sys.stderr.write("Cannot use And on different type than bool")
+                sys.exit(53)
+            if arg3.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg3)
+                if( op2 == None):
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            elif arg3.checkArgType("BOOL"):
+                op2 = arg3.text
+            else:
+                sys.stderr.write("Cannot use And on different type than bool")
+                sys.exit(53)
 
+            if op1 == "true" and op2 == "true":
+                self.setToFrame(arg1, resultval="true")
+            else:
+                self.setToFrame(arg1, resultval="false")
+            
             return position
         elif instruction.code == "OR":
             if not arg1.checkArgType("VAR") or not arg2.checkSymb() or not arg2.checkSymb():
@@ -457,8 +605,41 @@ class Interpreter:
             if not arg1.checkArgType("VAR") or not arg2.checkSymb() or not arg2.checkSymb():
                 sys.stderr.write(f"Instruction {instruction.code} has bad arguments")
                 sys.exit(32)
+            
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if op1 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            elif arg2.checkArgType("STRING"):
+                op1 = arg2.text
+            else:
+                sys.stderr.write("Cannot use Concat on different type than string")
+                sys.exit(53)
+            if arg3.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg3)
+                if op2 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            elif arg3.checkArgType("STRING"):
+                op2 = arg3.text
+            else:
+                sys.stderr.write("Cannot use Concat on different type than string")
+                sys.exit(53)
 
+            if op1 == None:
+                result = op2
+            elif op2 == None:
+                result = op1
+            else:
+                result = op1 + op2
+            if( result == None ):
+                result = ""
+            
+            self.setToFrame(arg1, resultval=result)
+            
             return position
+        
         elif instruction.code == "GETCHAR":
             if not arg1.checkArgType("VAR") or not arg2.checkSymb() or not arg2.checkSymb():
                 sys.stderr.write(f"Instruction {instruction.code} has bad arguments")
@@ -489,7 +670,7 @@ class Interpreter:
             if arg2.type == 'int' or arg3.type == 'int':
                 op1 = self.intConversion(op1)
                 op2 = self.intConversion(op2)
-
+            
             if op1 is op2 or op1 == 'nil' or op2 == 'nil':
                 for key in self.labels.keys():
                     if key == arg1.text:
@@ -502,13 +683,27 @@ class Interpreter:
                 sys.exit(32)
 
             return position
-
-
-
+        else:
+            sys.stderr.write("Wrong number of arguments")
+            sys.exit(32)
 
     def sortlist(self):
-        self.instList.sort(key=lambda instr: int(instr.order))
-
+        def convertInstOrder( op ):
+            try:
+                op = int(op.lstrip('0'))
+            except ValueError:
+                raise ValueError("Order has to be number")
+                
+            if op <= 0:
+                raise ValueError("Order has to be bigger than zero")
+            return op
+        
+        try:
+            self.instList.sort(key=lambda instr: convertInstOrder(instr.order))
+        except ValueError as e:
+            sys.stderr.write(str(e))
+            sys.exit(32)
+            
     def printList(self):
         for item in self.instList:
             print(item.order + " " + item.code + "")
@@ -542,7 +737,7 @@ if __name__ == "__main__":
     else:
         with open(args.input, 'r') as f:
             input_lines = f.readlines()
-
+    
     if not args.source:
         source_lines = ""
         while True:
@@ -553,19 +748,19 @@ if __name__ == "__main__":
             source_lines += line
 
         try:
-            source_xml = ET.fromstring(source_lines)
+            root = ET.fromstring(source_lines)
         except ET.ParseError as e:
             sys.stderr.write("Error parsing XML")
             sys.exit(31)
     else:
         try:
             source_xml = ET.parse(args.source)
+            root = source_xml.getroot()
         except ET.ParseError as e:
             sys.stderr.write("Error parsing XML")
             sys.exit(31)
 
     interpreter = Interpreter(input_lines)
-    root = source_xml.getroot()
 
     if root.tag != 'program':
         sys.stderr.write("Missing header 'program' in XML")
@@ -582,9 +777,10 @@ if __name__ == "__main__":
     if root.attrib['language'].upper() != 'IPPCODE23':
         sys.stderr.write("Language not supported by this interpret")
         sys.exit(32)
-
+        
+    order_dict = {}
     for inst in root:
-
+        
         if inst.tag != 'instruction':
             sys.stderr.write("Every element has to be 'instruction'")
             sys.exit(32)
@@ -593,12 +789,20 @@ if __name__ == "__main__":
             if not c in ['opcode', 'order']:
                 sys.stderr.write("Unsupported attribute in XML structure")
                 sys.exit(32)
-
+            
         try:
             new_inst = Instruction(inst.attrib['order'], inst.attrib['opcode'])
+            
         except Exception as ex:
             sys.stderr.write("Order or opcode is missing")
             sys.exit(32)
+        
+        
+        if inst.attrib['order'] in order_dict:
+            sys.stderr.write("Duplicate 'Order' attribute in XML")
+            sys.exit(32)
+        else:
+            order_dict.update({inst.attrib['order'] : inst.attrib['opcode']})
 
         if not inst.attrib['opcode'].upper() in ["CREATEFRAME", "PUSHFRAME", "POPFRAME", "RETURN", "BREAK",
        "DEFVAR", "POPS", "CALL", "LABEL", "JUMP", "PUSHS", "WRITE", "EXIT", "DPRINT",
