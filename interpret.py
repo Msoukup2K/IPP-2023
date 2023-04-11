@@ -573,8 +573,8 @@ class Interpreter:
                     except ValueError:
                         pass
             if type1 != type2:
-				sys.stderr.write("Cannot use EQ with different types")
-				sys.exit(53)
+                sys.stderr.write("Cannot use EQ with different types")
+                sys.exit(53)
             
             if op1 == op2:
                 self.setToFrame(arg1, resultval="true")
