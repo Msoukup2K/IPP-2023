@@ -188,12 +188,12 @@ class Interpreter:
             sys.stderr.write("Cannot interpret instruction without first argument 'arg1' ")
             sys.exit(32)
         arg1 = instruction.argdict['arg1']
-        
+
         if instruction.code == "DEFVAR":
             if not arg1.checkArgType("VAR"):
                 sys.stderr.write(f"Instruction {instruction.code} requires type var")
                 sys.exit(53)
-                
+
             if arg1.frame == "GF":
                 if arg1.value.name in self.GF.keys():
                     sys.stderr.write("Cannot redefine a variable")
@@ -216,7 +216,7 @@ class Interpreter:
                         sys.stderr.write("Cannot redefine a variable")
                         sys.exit(52)
                 self.LF[0].update({arg1.value.name: None})
-    
+
             return position
 
         elif instruction.code == "LABEL":
@@ -277,7 +277,7 @@ class Interpreter:
                         string = "false"
                 else:
                     string = arg1.text
-                    
+
             string = codecs.decode(string, 'unicode_escape')
             print(string,end="")
 
@@ -345,7 +345,7 @@ class Interpreter:
                 value = item.strip()
                 self.input.pop(i)
 
-            self.setToFrame(variable=arg1, resultval=value)    
+            self.setToFrame(variable=arg1, resultval=value)
             return position
         elif instruction.code == "INT2CHAR":
             if not arg1.checkArgType("VAR") and not arg2.checkSymb():
@@ -373,14 +373,14 @@ class Interpreter:
             if not arg1.checkArgType("VAR") and not arg2.checkSymb():
                 sys.stderr.write(f"Instruction {instruction.code} has bad type of arguments")
                 sys.exit(32)
-            
+
             if arg2.checkArgType("VAR"):
                 op2 = self.getFromFrame(arg2)
-                
+
             else:
                 op2 = arg2.text
-                
-                
+
+
             if( op2 == None):
                     value = 'nil'
             else:
@@ -394,9 +394,9 @@ class Interpreter:
                             value = 'bool'
                     except ValueError:
                         pass
-                
+
             self.setToFrame(arg1, resultval=value)
-            
+
             return position
 
         elif instruction.code == "MOVE":
@@ -424,7 +424,7 @@ class Interpreter:
             if not arg1.checkArgType("VAR") or not arg2.checkSymb() or not arg2.checkSymb():
                 sys.stderr.write(f"Instruction {instruction.code} has bad arguments")
                 sys.exit(32)
-                
+
             if arg2.checkArgType("VAR"):
                 op1 = self.intConversion(self.getFromFrame(arg2))
             elif arg2.checkArgType("INT"):
@@ -463,7 +463,7 @@ class Interpreter:
             else:
                 sys.stderr.write("Cannot use Sub on diffent type than int")
                 sys.exit(53)
-                
+
             result = op1 - op2
 
             self.setToFrame(arg1, resultval=result)
@@ -535,7 +535,7 @@ class Interpreter:
             if not arg1.checkArgType("VAR") or not arg2.checkSymb() or not arg2.checkSymb():
                 sys.stderr.write(f"Instruction {instruction.code} has bad arguments")
                 sys.exit(32)
-                
+
             if arg2.checkArgType("VAR"):
                 op1 = self.getFromFrame(arg2)
             else:
@@ -549,19 +549,19 @@ class Interpreter:
             if arg2.type == 'int' or arg3.type == 'int':
                 op1 = self.intConversion(op1)
                 op2 = self.intConversion(op2)
-                 
-			if op1 is op2:
-				self.setToFrame(arg1, resultval="true")
-			else:
-				self.setToFrame(arg1, resultval="false")
-            
-            
+
+            if op1 is op2:
+                self.setToFrame(arg1, resultval="true")
+            else:
+                self.setToFrame(arg1, resultval="false")
+
+
             return position
         elif instruction.code == "AND":
             if not arg1.checkArgType("VAR") or not arg2.checkSymb() or not arg2.checkSymb():
                 sys.stderr.write(f"Instruction {instruction.code} has bad arguments")
                 sys.exit(32)
-            
+
             if arg2.checkArgType("VAR"):
                 op1 = self.getFromFrame(arg2)
                 if( op1 == None):
@@ -587,7 +587,7 @@ class Interpreter:
                 self.setToFrame(arg1, resultval="true")
             else:
                 self.setToFrame(arg1, resultval="false")
-            
+
             return position
         elif instruction.code == "OR":
             if not arg1.checkArgType("VAR") or not arg2.checkSymb() or not arg2.checkSymb():
@@ -605,7 +605,7 @@ class Interpreter:
             if not arg1.checkArgType("VAR") or not arg2.checkSymb() or not arg2.checkSymb():
                 sys.stderr.write(f"Instruction {instruction.code} has bad arguments")
                 sys.exit(32)
-            
+
             if arg2.checkArgType("VAR"):
                 op1 = self.getFromFrame(arg2)
                 if op1 == None:
@@ -635,11 +635,11 @@ class Interpreter:
                 result = op1 + op2
             if( result == None ):
                 result = ""
-            
+
             self.setToFrame(arg1, resultval=result)
-            
+
             return position
-        
+
         elif instruction.code == "GETCHAR":
             if not arg1.checkArgType("VAR") or not arg2.checkSymb() or not arg2.checkSymb():
                 sys.stderr.write(f"Instruction {instruction.code} has bad arguments")
@@ -670,7 +670,7 @@ class Interpreter:
             if arg2.type == 'int' or arg3.type == 'int':
                 op1 = self.intConversion(op1)
                 op2 = self.intConversion(op2)
-            
+
             if op1 is op2 or op1 == 'nil' or op2 == 'nil':
                 for key in self.labels.keys():
                     if key == arg1.text:
@@ -693,17 +693,17 @@ class Interpreter:
                 op = int(op.lstrip('0'))
             except ValueError:
                 raise ValueError("Order has to be number")
-                
+
             if op <= 0:
                 raise ValueError("Order has to be bigger than zero")
             return op
-        
+
         try:
             self.instList.sort(key=lambda instr: convertInstOrder(instr.order))
         except ValueError as e:
             sys.stderr.write(str(e))
             sys.exit(32)
-            
+
     def printList(self):
         for item in self.instList:
             print(item.order + " " + item.code + "")
@@ -737,7 +737,7 @@ if __name__ == "__main__":
     else:
         with open(args.input, 'r') as f:
             input_lines = f.readlines()
-    
+
     if not args.source:
         source_lines = ""
         while True:
@@ -777,10 +777,10 @@ if __name__ == "__main__":
     if root.attrib['language'].upper() != 'IPPCODE23':
         sys.stderr.write("Language not supported by this interpret")
         sys.exit(32)
-        
+
     order_dict = {}
     for inst in root:
-        
+
         if inst.tag != 'instruction':
             sys.stderr.write("Every element has to be 'instruction'")
             sys.exit(32)
@@ -789,15 +789,15 @@ if __name__ == "__main__":
             if not c in ['opcode', 'order']:
                 sys.stderr.write("Unsupported attribute in XML structure")
                 sys.exit(32)
-            
+
         try:
             new_inst = Instruction(inst.attrib['order'], inst.attrib['opcode'])
-            
+
         except Exception as ex:
             sys.stderr.write("Order or opcode is missing")
             sys.exit(32)
-        
-        
+
+
         if inst.attrib['order'] in order_dict:
             sys.stderr.write("Duplicate 'Order' attribute in XML")
             sys.exit(32)
