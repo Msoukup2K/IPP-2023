@@ -515,7 +515,12 @@ class Interpreter:
             if arg3.checkArgType("VAR"):
                 op2 = self.intConversion(self.getFromFrame(arg3))
             elif arg3.checkArgType("INT"):
-                op2 = self.intConversion(arg3.text)
+                op2 = arg3.text
+                try:
+                    op2 = int(op2)
+                except ValueError as e:
+                    sys.stderr.write("Cannot use Add on different type than int")
+                    sys.exit(32)
             else:
                 sys.stderr.write("Cannot use Add on diffent type than int")
                 sys.exit(53)
@@ -1171,7 +1176,7 @@ class Interpreter:
                 print(arg + " " + argitem.text)
         exit(0)
 if __name__ == "__main__":
-
+    
     parser = argparse.ArgumentParser(description="Argument parser for interpret.py", add_help=False)
 
     parser.add_argument("--help", help="Prints help for usage of interpret.py",
