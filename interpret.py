@@ -160,6 +160,7 @@ class Interpreter:
             if len(self.calls) == 0:
                 sys.stderr.write("Call for this return doesn't exist")
                 sys.exit(56)
+            
             return self.calls.pop()
         elif instruction.code == "CREATEFRAME":
             self.TF = dict()
@@ -259,6 +260,7 @@ class Interpreter:
             else:
                 sys.stderr.write("Non-existent Label")
                 sys.exit(52)
+            
             return value
 
         elif instruction.code == "WRITE":
@@ -518,7 +520,12 @@ class Interpreter:
             if arg3.checkArgType("VAR"):
                 op2 = self.intConversion(self.getFromFrame(arg3))
             elif arg3.checkArgType("INT"):
-                op2 = self.intConversion(arg3.text)
+                op2 = arg3.text
+                try:
+                    op2 = int(op2)
+                except ValueError as e:
+                    sys.stderr.write("Cannot use Add on different type than int")
+                    sys.exit(32)
             else:
                 sys.stderr.write("Cannot use Add on diffent type than int")
                 sys.exit(53)
@@ -994,6 +1001,9 @@ class Interpreter:
                 sys.exit(32)
                 
             op1 = self.getFromFrame(arg1)
+            if op1 == None:
+                sys.stderr.write("Missing value")
+                sys.exit(56)
             
             if arg2.checkArgType("VAR"):
                 op2 = self.getFromFrame(arg2)
@@ -1015,10 +1025,18 @@ class Interpreter:
             else:
                 sys.stderr.write("Cannot use Setchar with different type than int and string")
                 sys.exit(53)
-
             
-
-            return position
+            for i in range(len(op1)):
+                if i == int(op2):
+                    try:
+                        result = op1[:i] + op3 + op1[i+1:]
+                        self.setToFrame(arg1, resultval=op1)
+                        return position
+                    except IndexError as e:
+                        sys.stderr.write("Index is out of range")
+                        sys.exit(58)
+            sys.stderr.write("Index is out of range")
+            sys.exit(58)
         elif instruction.code == "JUMPIFEQ":
             if not arg1.checkArgType("LABEL") or not arg2.checkSymb() or not arg3.checkSymb():
                 sys.stderr.write(f"Instruction {instruction.code} has bad arguments")
@@ -1099,7 +1117,7 @@ class Interpreter:
                     type1 = 'nil'
                 else:
                     try:
-                        int(op1)
+                        op1 = int(op1)
                         type1 = "int"
                     except ValueError:
                         type1 = 'string'
@@ -1111,6 +1129,8 @@ class Interpreter:
             else:
                 op1 = arg2.text
                 type1 = arg2.type
+                if type1 == "int":
+                    op1 = int(op1)
 
             if arg3.checkArgType("VAR"):
                 op2 = self.getFromFrame(arg3)
@@ -1121,7 +1141,7 @@ class Interpreter:
                     type2 = 'nil'
                 else:
                     try:
-                        int(op2)
+                        op2 = int(op2)
                         type2 = "int"
                     except ValueError:
                         type2 = 'string'
@@ -1133,6 +1153,8 @@ class Interpreter:
             else:
                 op2 = arg3.text
                 type2 = arg3.type
+                if type2 == "int":
+                    op2 = int(op2)
 
             if type1 != type2 and type1 != "nil" and type2 != "nil":
                 sys.stderr.write("Cannot use Jumpifneq with different types")
@@ -1174,7 +1196,7 @@ class Interpreter:
                 print(arg + " " + argitem.text)
         exit(0)
 if __name__ == "__main__":
-
+    
     parser = argparse.ArgumentParser(description="Argument parser for interpret.py", add_help=False)
 
     parser.add_argument("--help", help="Prints help for usage of interpret.py",
