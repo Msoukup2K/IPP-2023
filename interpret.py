@@ -182,7 +182,7 @@ class Interpreter:
                 self.TF = self.LF.pop()
             return position
         elif instruction.code == "BREAK":
-            sys.stderr.write("TADY JE VYPIS ORDER, což je index v listu, počet vykonaných instrukcí a obsahe ramců")
+            sys.stderr.write(f"Instruction order: {instruction.order}, actual position: {position}\nFrames - GF: {self.GF}\nTF: {self.TF}\nLF: {self.TF}")
             pass
         else:
             sys.stderr.write("Wrong number of arguments")
@@ -232,9 +232,12 @@ class Interpreter:
                 sys.exit(32)
             if arg1.checkArgType("VAR"):
                 value = self.getFromFrame(arg1)
+                if value == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
             else:
                 value = arg1.text
-
+            
             self.stack.append(value)
             return position
         elif instruction.code == "POPS":
@@ -269,8 +272,8 @@ class Interpreter:
                 if string == None:
                     sys.stderr.write("Missing value")
                     sys.exit(56)
-                if( string == "nil"):
-                    print("", end="")
+                if string == "nil":
+                    print("",end="")
                 else:
                     print(string,end="")
                 return position
@@ -334,7 +337,6 @@ class Interpreter:
             sys.stderr.write("Wrong number of arguments")
             sys.exit(32)
 
-    #TODO předělat před odevzdáním ty kontroly xml
     def interpretTwo(self, instruction, position):
         arg1 = instruction.argdict['arg1']
         arg2 = instruction.argdict['arg2']
@@ -343,11 +345,7 @@ class Interpreter:
                 sys.stderr.write(f"Instruction {instruction.code} has bad type of arguments")
                 sys.exit(32)
             
-            if len(self.input) == 0:
-                sys.stderr.write("Input is empty")
-                sys.exit(54)
-            
-            
+            value = ""      
             for i, item in enumerate(self.input):
                 if arg2.text == "bool":
                     if item.strip().upper() == "TRUE" or item.strip().upper() == "FALSE":
@@ -412,14 +410,32 @@ class Interpreter:
                 if op1 == None:
                     sys.stderr.write("Missing value")
                     sys.exit(56)
+                if op1 == "nil":
+                    sys.stderr.write("Cannot use Strlen on different type than string")
+                    sys.exit(53)
+                else:
+                    try:
+                        int(op1)
+                        sys.stderr.write("Cannot use Strlen on different type than string")
+                        sys.exit(53)
+                    except ValueError:
+                        try:
+                            if op1.upper() == "TRUE" or op1.upper() == "FALSE":
+                                sys.stderr.write("Cannot use Strlen on different type than string")
+                                sys.exit(53)
+                        except ValueError:
+                            pass
             elif arg2.checkArgType("STRING"):
                 op1 = arg2.text
             else:
                 sys.stderr.write("Cannot use Strlen on different type than string")
                 sys.exit(53)
             
-            result = len(op1)
-            
+            try:
+                result = len(op1)
+            except TypeError as e:
+                result = 0
+
             self.setToFrame(arg1, resultval=result)
             return position
 
@@ -431,13 +447,14 @@ class Interpreter:
             if arg2.checkArgType("VAR"):
                 op1 = self.getFromFrame(arg2)
                 if op1 == None:
-                    op1 = "nil"
+                    type1 = ""
                 if op1 == "nil":
                     type1 = "nil"
                 else:
                     try:
-                        int(op1)
-                        type1 = "int"
+                        if op1 != None:
+                            int(op1)
+                            type1 = "int"
                     except ValueError:
                         type1 = 'string'
                         try:
@@ -449,6 +466,7 @@ class Interpreter:
             else:
                 op1 = arg2.text
                 type1 = arg2.type
+            
             
             self.setToFrame(arg1, resultval=type1)
 
@@ -901,7 +919,7 @@ class Interpreter:
             elif arg2.checkArgType("STRING"):
                 op1 = arg2.text
             else:
-                sys.stderr.write("Cannot use Setchar with different type than int and string")
+                sys.stderr.write("Cannot use Stri2int with different type than int and string")
                 sys.exit(53)
             if arg3.checkArgType("VAR"):
                 op2 = self.getFromFrame(arg3)
@@ -911,10 +929,15 @@ class Interpreter:
             elif arg3.checkArgType("INT"):
                 op2 = arg3.text
             else:
-                sys.stderr.write("Cannot use Setchar with different type than int and string")
+                sys.stderr.write("Cannot use Stri2int with different type than int and string")
                 sys.exit(53)
 
-            self.setToFrame(variable=arg1, resultval=op2)
+            if self.intConversion(op2) < 0 or self.intConversion(op2) > len(op1)-1:
+                sys.stderr.write("Index out of range")
+                sys.exit(58)
+            
+            result = ord(op1[self.intConversion(op2)])
+            self.setToFrame(arg1, resultval=result)
 
             return position
         elif instruction.code == "CONCAT":
@@ -1004,7 +1027,13 @@ class Interpreter:
             if op1 == None:
                 sys.stderr.write("Missing value")
                 sys.exit(56)
-            
+            if op1 == "nil":
+                sys.stderr.write("Variable cannot be nil")
+                sys.exit(53)
+            if op1.upper() == "TRUE" or op1.upper() == "FALSE":
+                sys.stderr.write("Variable cannot be bool")
+                sys.exit(53)
+
             if arg2.checkArgType("VAR"):
                 op2 = self.getFromFrame(arg2)
                 if op2 == None:
@@ -1022,6 +1051,9 @@ class Interpreter:
                     sys.exit(56)
             elif arg3.checkArgType("STRING"):
                 op3 = arg3.text
+                if op3 == None:
+                    sys.stderr.write("Modifier for Setchar cannot be empty")
+                    sys.exit(58)
             else:
                 sys.stderr.write("Cannot use Setchar with different type than int and string")
                 sys.exit(53)
@@ -1030,7 +1062,7 @@ class Interpreter:
                 if i == int(op2):
                     try:
                         result = op1[:i] + op3 + op1[i+1:]
-                        self.setToFrame(arg1, resultval=op1)
+                        self.setToFrame(arg1, resultval=result)
                         return position
                     except IndexError as e:
                         sys.stderr.write("Index is out of range")
@@ -1302,7 +1334,10 @@ if __name__ == "__main__":
                 sys.stderr.write("Argument have more than 'type' ")
                 sys.exit(32)
             try:
-                new_arg = Argument(c.attrib['type'], c.text.strip())
+                try:
+                    new_arg = Argument(c.attrib['type'], c.text.strip())
+                except:
+                    new_arg = Argument(c.attrib['type'], c.text)
             except Exception as ex:
                 sys.stderr.write("Argument doesn't have type attribute")
                 sys.exit(32)
