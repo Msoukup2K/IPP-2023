@@ -1,7 +1,5 @@
 .IPPcode23
 
-CREATEFRAME
-PUSHFRAME
+DEFVAR GF@a
 
-DEFVAR LF@aa
-DEFVAR LF@aa
+EQ GF@a bool@true int@2

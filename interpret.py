@@ -540,17 +540,43 @@ class Interpreter:
                 op1 = self.getFromFrame(arg2)
             else:
                 op1 = arg2.text
-
+            if op1 == None:
+                type1 = "nil"
+            else:
+                try:
+                    int(op1)
+                    type1 = "int"
+                except ValueError:
+                    type1 = 'string'
+                    try:
+                        if op1.upper() == "TRUE" or op1.upper == "FALSE":
+                            type1 = 'bool'
+                    except ValueError:
+                        pass
+   
             if arg3.checkArgType("VAR"):
                 op2 = self.getFromFrame(arg3)
             else:
                 op2 = arg3.text
-
-            if arg2.type == 'int' or arg3.type == 'int':
-                op1 = self.intConversion(op1)
-                op2 = self.intConversion(op2)
-
-            if op1 is op2:
+                
+            if( op2 == None):
+                type2 = 'nil'
+            else:
+                try:
+                    int(op2)
+                    type2 = "int"
+                except ValueError:
+                    type2 = 'string'
+                    try:
+                        if op2.upper() == "TRUE" or op2.upper == "FALSE":
+                            type2 = 'bool'
+                    except ValueError:
+                        pass
+            if type1 != type2:
+				sys.stderr.write("Cannot use EQ with different types")
+				sys.exit(53)
+            
+            if op1 == op2:
                 self.setToFrame(arg1, resultval="true")
             else:
                 self.setToFrame(arg1, resultval="false")
