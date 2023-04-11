@@ -1031,7 +1031,7 @@ class Interpreter:
                     type1 = 'nil'
                 else:
                     try:
-                        int(op1)
+                        op1 = int(op1)
                         type1 = "int"
                     except ValueError:
                         type1 = 'string'
@@ -1043,6 +1043,8 @@ class Interpreter:
             else:
                 op1 = arg2.text
                 type1 = arg2.type
+                if type1 == "int":
+                    op1 = int(op1)
 
             if arg3.checkArgType("VAR"):
                 op2 = self.getFromFrame(arg3)
@@ -1053,7 +1055,7 @@ class Interpreter:
                     type2 = 'nil'
                 else:
                     try:
-                        int(op2)
+                        op2 = int(op2)
                         type2 = "int"
                     except ValueError:
                         type2 = 'string'
@@ -1065,6 +1067,8 @@ class Interpreter:
             else:
                 op2 = arg3.text
                 type2 = arg3.type
+                if type2 == "int":
+                    op2 = int(op2)
 
             if type1 != type2 and type1 != "nil" and type2 != "nil":
                 sys.stderr.write("Cannot use Jumpifeq with different types")
