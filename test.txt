@@ -2,4 +2,20 @@
 
 DEFVAR GF@a
 
-EQ GF@a bool@true int@2
+# abc
+READ GF@a int
+WRITE GF@a
+TYPE GF@a GF@a
+WRITE GF@a
+
+# abc
+READ GF@a bool
+WRITE GF@a
+TYPE GF@a GF@a
+WRITE GF@a
+
+# EOF
+READ GF@a string
+WRITE GF@a
+TYPE GF@a GF@a
+WRITE GF@a
