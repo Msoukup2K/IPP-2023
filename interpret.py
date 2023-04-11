@@ -284,7 +284,10 @@ class Interpreter:
                 else:
                     string = arg1.text
 
-            string = codecs.decode(string, 'unicode_escape')
+            string = string.replace('\\032', ' ')
+            string = string.replace('\\092', ' \\')
+            string = string.replace('\\010', '\n')
+            string = string.replace('\\035', '#')
             print(string,end="")
 
             return position
@@ -1277,7 +1280,7 @@ if __name__ == "__main__":
                 sys.stderr.write("Argument have more than 'type' ")
                 sys.exit(32)
             try:
-                new_arg = Argument(c.attrib['type'], c.text)
+                new_arg = Argument(c.attrib['type'], c.text.strip())
             except Exception as ex:
                 sys.stderr.write("Argument doesn't have type attribute")
                 sys.exit(32)
