@@ -1,16 +1,45 @@
 .IPPcode23
 
 DEFVAR GF@a
-MOVE GF@a string@abcd
 
-SETCHAR GF@a int@2 string@C
+GT GF@a int@40 int@2
 WRITE GF@a
 
-SETCHAR GF@a int@3 string@DEFVAR
+GT GF@a int@40 int@40
 WRITE GF@a
 
-SETCHAR GF@a int@0 string@\065
+GT GF@a int@40 int@150
 WRITE GF@a
 
-SETCHAR GF@a int@1 string@\066\067
+GT GF@a int@-10 int@-40
+WRITE GF@a
+
+GT GF@a string@abcd string@
+WRITE GF@a
+
+GT GF@a string@abcd string@bcde
+WRITE GF@a
+
+GT GF@a string@bcde string@abcd
+WRITE GF@a
+
+GT GF@a string@abcd string@abcd
+WRITE GF@a
+
+GT GF@a string@\065 string@A
+WRITE GF@a
+
+GT GF@a string@A string@\065
+WRITE GF@a
+
+GT GF@a bool@false bool@false
+WRITE GF@a
+
+GT GF@a bool@false bool@true
+WRITE GF@a
+
+GT GF@a bool@true bool@false
+WRITE GF@a
+
+GT GF@a bool@true bool@true
 WRITE GF@a
