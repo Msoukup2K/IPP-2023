@@ -1,6 +1,10 @@
 down/xsouku15 (1)/readme1.pdf
 down/xsouku15 (1)/is_it_ok.sh
 ipp-2023-tests/*
+IPP-2023.code-workspace
+out.html
+ipp-2023-tests/both/read/read3_tempOut.temp
+ipp-2023-tests/both/setchar/setchar_tempOut.temp
 ipp-2023-tests/both/and/and1_tempOut.temp
 ipp-2023-tests/both/and/and2_tempOut.temp
 ipp-2023-tests/both/eq/eq_tempOut.temp
