@@ -357,35 +357,40 @@ class Interpreter:
                 sys.stderr.write(f"Instruction {instruction.code} has bad type of arguments")
                 sys.exit(32)
             
-            value = ""
+            value = "nil"
+            valtype = "nil"
             for i, item in enumerate(self.input):
                 if arg2.text == "bool":
                     if item.strip().upper() == "TRUE" or item.strip().upper() == "FALSE":
                         value = item.strip().lower()
+                        valtype = "bool"
                         self.input.pop(i)
                     else:
                         value = "false"
+                        valtype = "bool"
                         self.input.pop(i)
+
                     break
                 elif arg2.text == "int":
                     try:
                         value = int(item.strip())
+                        valtype = "int"
                         self.input.pop(i)
-                        break
                     except ValueError:
                         value = "nil"
+                        valtype = "nil"
                         self.input.pop(i)
-                        break
+                    break
                 elif arg2.text == "string":
                     value = item.strip()
+                    valtype = "string"
                     self.input.pop(i)
                     break
                 else:
-                    value = "nil"
                     self.input.pop(i)
                     break
-
-            var = Argument(arg2.text, value)
+            
+            var = Argument(valtype, value)
             
             self.setToFrame(arg1, var)
                 
@@ -713,7 +718,7 @@ class Interpreter:
             else:
                 op2 = arg3
 
-            if op1.checkArgType("NIL") or op2.checkArgType("NIL") == "nil":
+            if op1.checkArgType("NIL") or op2.checkArgType("NIL"):
                 sys.stderr.write("Cannot use LT with nil")
                 sys.exit(53)
             
@@ -728,9 +733,9 @@ class Interpreter:
                     result = str(self.intConversion(op1.text) < self.intConversion(op2.text)).lower()
             elif op1.checkArgType("STRING") and op2.checkArgType("STRING"):
                 if op1.text == None and op2.text != None:
-                    result = 'false'
-                elif op1.text != None and op2.text == None:
                     result = 'true'
+                elif op1.text != None and op2.text == None:
+                    result = 'false'
                 else:
                     result = str(op1.text < op2.text).lower()
             else:
@@ -818,7 +823,7 @@ class Interpreter:
                 sys.stderr.write("Cannot use EQ with different types")
                 sys.exit(53)
             
-            if op1 == op2:
+            if op1.text == op2.text:
                 var = Argument("bool", "true")
                 self.setToFrame(arg1, var)
             else:
@@ -851,11 +856,11 @@ class Interpreter:
             else:
                 op2 = arg3
 
-            if not op1.checkArgType("BOOL"):
+            if not op2.checkArgType("BOOL"):
                 sys.stderr.write("Cannot use And on different type than bool")
                 sys.exit(53)
 
-            if op1 == "true" and op2 == "true":
+            if op1.text == "true" and op2.text == "true":
                 var = Argument("bool", "true")
                 self.setToFrame(arg1, var)
             else:
@@ -959,7 +964,7 @@ class Interpreter:
                     sys.exit(56)
             else:
                 op2 = arg3
-            if not op1.checkArgType("STRING"):
+            if not op2.checkArgType("STRING"):
                 sys.stderr.write("Cannot use Concat on different type than string")
                 sys.exit(53)
 
@@ -1106,13 +1111,14 @@ class Interpreter:
                 operand1 = op1.text
                 operand2 = op2.text
 
+            if arg1.text in self.labels.keys():
+                    label = self.labels[arg1.text]
+            else:
+                sys.stderr.write("Label doesn't exist")
+                sys.exit(52)
+
             if operand1 == operand2:
-                if arg1.text in self.labels.keys():
-                    return self.labels[arg1.text]
-                else:
-                    sys.stderr.write("Label doesn't exist")
-                    sys.exit(52)
-                    
+                    return label
             return position
         elif instruction.code == "JUMPIFNEQ":
             if not arg1.checkArgType("LABEL") or not arg2.checkSymb() or not arg3.checkSymb():
@@ -1146,13 +1152,15 @@ class Interpreter:
                 operand1 = op1.text
                 operand2 = op2.text
 
+            if arg1.text in self.labels.keys():
+                label = self.labels[arg1.text]
+            else:
+                sys.stderr.write("Cannot jump to the label")
+                sys.exit(52)
                 
             if operand1 != operand2:
-                if arg1.text in self.labels.keys():
-                    return self.labels[arg1.text]
-                else:
-                    sys.stderr.write("Label doesn't exist")
-                    sys.exit(52)
+                return label
+        
             
             return position
         else:
@@ -1289,7 +1297,8 @@ if __name__ == "__main__":
                 sys.stderr.write("Argument have more than 'type' ")
                 sys.exit(32)
             try:
-                new_arg = Argument(c.attrib['type'], c.text.strip() if c.text != None else c.text)
+
+                new_arg = Argument(c.attrib['type'], re.sub(r'\\(\d{3})', lambda match: chr(int(match.group(1))),c.text.strip()) if c.text != None else c.text)
             except Exception as ex:
                 print(ex)
                 sys.stderr.write("Argument doesn't have type attribute")

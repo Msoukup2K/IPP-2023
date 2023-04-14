@@ -1,3 +1,14 @@
 down/xsouku15 (1)/readme1.pdf
 down/xsouku15 (1)/is_it_ok.sh
 ipp-2023-tests/*
+ipp-2023-tests/both/and/and1_tempOut.temp
+ipp-2023-tests/both/and/and2_tempOut.temp
+ipp-2023-tests/both/eq/eq_tempOut.temp
+ipp-2023-tests/both/eq/eq2_tempOut.temp
+ipp-2023-tests/both/gt/gt_tempOut.temp
+ipp-2023-tests/both/jumpifeq/jumpifeq_tempOut.temp
+ipp-2023-tests/both/jumpifneq/jumpifneq_tempOut.temp
+ipp-2023-tests/both/lt/lt_tempOut.temp
+ipp-2023-tests/both/move/move_type.out
+ipp-2023-tests/both/read/read_badval_tempOut.temp
+ipp-2023-tests/both/setchar/setchar_tempOut.temp
