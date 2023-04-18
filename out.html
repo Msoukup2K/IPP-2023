@@ -12,315 +12,1244 @@
 
 <body>
     <h1 style="text-align: center;">Test result</h1>
-    <h2>Tests run: 134</h2>
-    <h2>Passed: 58 </h2>
-    <h2>Failed: 76 </h2>
+    <h2>Tests run: 588</h2>
+    <h2>Passed: 588 </h2>
+    <h2>Failed: 0 </h2>
     <hr>
-    <h3 style="text-align: center; color:red">Failed tests</h3><hr><h4>ipp-2023-tests/interpret-only/float_tests</h4><table><tr><th>Test name</th><th>Return code</th><th>Expected return code</th><th>Output</th><th>Expected output</th></tr>
-<tr><td>float_int2float_wrong_operand</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_accepted_numbers</td><td>0</td><td>0</td><td><textarea readonly rows=5 cols=50>1-10x11.1.01p+01p-11p0</textarea></td><td><textarea readonly rows=5 cols=50>0x1.0000000000000p+0-0x1.0000000000000p+00x1.0000000000000p+00x1.0000000000000p+00x1.0000000000000p+00x1.0000000000000p+00x1.0000000000000p-10x1.0000000000000p+0</textarea></td></tr>
-
-<tr><td>float_float2int_undefined_frame</td><td>32</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_accepted_numbers5</td><td>0</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>0x1.0000000000000p+00x1.0000000000000p+0</textarea></td></tr>
-
-<tr><td>float_int2float_wrong_operand2</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_accepted_numbers4</td><td>0</td><td>0</td><td><textarea readonly rows=5 cols=50>0x1p-00x1.0</textarea></td><td><textarea readonly rows=5 cols=50>0x1.0000000000000p+00x1.0000000000000p+0</textarea></td></tr>
-
-<tr><td>float_add_float_float</td><td>53</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>0x1.2000000000000p+1</textarea></td></tr>
-
-<tr><td>float_float2int_undefined_var</td><td>32</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_accepted_numbers6</td><td>0</td><td>0</td><td><textarea readonly rows=5 cols=50>-0x1.175c57117ca21p+27.1</textarea></td><td><textarea readonly rows=5 cols=50>-0x1.175c57117ca21p+270x1.0000000000000p-4</textarea></td></tr>
-
-<tr><td>float_div_float_int</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_mul_float_float</td><td>53</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>-0x1.4400000000000p+0</textarea></td></tr>
-
-<tr><td>float_sub_float_float</td><td>53</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>0x0.0p+0</textarea></td></tr>
-
-<tr><td>float_div_zero</td><td>32</td><td>57</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_float2int</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>2</textarea></td></tr>
-
-<tr><td>float_accepted_numbers3</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>0x1.0000000000000p+00x1.0000000000000p+0</textarea></td></tr>
-
-<tr><td>float_accepted_numbers2</td><td>0</td><td>0</td><td><textarea readonly rows=5 cols=50>-0x1+0x1-1.0-1p+0</textarea></td><td><textarea readonly rows=5 cols=50>-0x1.0000000000000p+00x1.0000000000000p+0-0x1.0000000000000p+0-0x1.0000000000000p+0</textarea></td></tr>
-
-<tr><td>float_move</td><td>0</td><td>0</td><td><textarea readonly rows=5 cols=50>0x1.2000p+0</textarea></td><td><textarea readonly rows=5 cols=50>0x1.2000000000000p+0</textarea></td></tr>
-
-<tr><td>float_int2float_uninicialized_variable</td><td>32</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_float2int_uninicialized_variable</td><td>32</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_int2float_undefined_var</td><td>32</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_pushs</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>0x1.2000000000000p+0</textarea></td></tr>
-
-<tr><td>float_div_float_float</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>-0x1.0000000000000p+0</textarea></td></tr>
-
-<tr><td>float_int2float_undefined_frame</td><td>32</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_int2float_undefined_var2</td><td>32</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_tf_lf</td><td>0</td><td>0</td><td><textarea readonly rows=5 cols=50>0x1.200p+00x1.200p+0</textarea></td><td><textarea readonly rows=5 cols=50>0x1.2000000000000p+00x1.2000000000000p+0</textarea></td></tr>
-
-<tr><td>float_float2int_undefined_var2</td><td>32</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_int2float_undefined_frame2</td><td>32</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_read</td><td>0</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>0x1.2000000000000p+0</textarea></td></tr>
-
-<tr><td>float_float2int_wrong_operand</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_int2float</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>0x1.0000000000000p+1</textarea></td></tr>
-
-<tr><td>float_float2int_wrong_operand2</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_float2int_undefined_frame2</td><td>32</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+    <h3 style="text-align: center; color:red">Failed tests</h3><hr><h3 style="text-align: center; color:green">Passed tests</h3><hr><h4>ipp-2023-tests/both</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>no-instructions</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
 </table>
-<hr><h4>ipp-2023-tests/interpret-only/stack_tests</h4><table><tr><th>Test name</th><th>Return code</th><th>Expected return code</th><th>Output</th><th>Expected output</th></tr>
-<tr><td>stack_lts_differenttype</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<hr><h4>ipp-2023-tests/both/func</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>return_empty_stack1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>stack_eqs_differenttype</td><td>32</td><td>53
-</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>false</textarea></td></tr>
+<tr><td>label_redef</td><td>52</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>stack_gts_nil</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>return_empty_stack2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>stack_ands_notbool</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_jumpifeqs_int</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>noice</textarea></td></tr>
-
-<tr><td>stack_stri2ints_notnumber</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_jumpifeqs_string</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>noice</textarea></td></tr>
-
-<tr><td>stack_subs_notint</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_idivs</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>-21</textarea></td></tr>
-
-<tr><td>stack_nots</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>falsetrue</textarea></td></tr>
-
-<tr><td>stack_lts_nil</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_gts</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>falsefalsefalsefalsefalsetruetruetrue</textarea></td></tr>
-
-<tr><td>stack_ands</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>truefalsefalsefalse</textarea></td></tr>
-
-<tr><td>stack_ors</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>truetruetruefalse</textarea></td></tr>
-
-<tr><td>stack_jumpifneqs_int</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>noice</textarea></td></tr>
-
-<tr><td>stack_jumpifeqs_differenttype</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_idivs_notint</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_jumpifeqs_nil</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>noice</textarea></td></tr>
-
-<tr><td>stack_int2chars_wrongnumber</td><td>32</td><td>58</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_jumpifneqs_differenttype</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_jumpifneqs_bool</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>noice</textarea></td></tr>
-
-<tr><td>stack_stri2ints_outofbounds</td><td>32</td><td>58</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_jumpifeqs_differenttype_nil</td><td>32</td><td>0
-</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_muls</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>-166</textarea></td></tr>
-
-<tr><td>stack_ors_notbool</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_clears</td><td>32</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_muls_notint</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_jumpifeqs_bool</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>noice</textarea></td></tr>
-
-<tr><td>stack_jumpifneqs_differenttype_nil</td><td>32</td><td>0
-</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>noice</textarea></td></tr>
-
-<tr><td>stack_stri2ints_notstring</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_int2chars_notnumber</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_gts_differenttype</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_nots_notbool</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_int2chars</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>E</textarea></td></tr>
-
-<tr><td>stack_eqs_nil</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>falsetrue</textarea></td></tr>
-
-<tr><td>stack_eqs</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>truetruefalsetruetruefalsefalsefalse</textarea></td></tr>
-
-<tr><td>stack_stri2ints</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>69</textarea></td></tr>
-
-<tr><td>stack_adds_notint</td><td>32</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>stack_eqs_differenttype_nil</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>false</textarea></td></tr>
-
-<tr><td>stack_adds</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>03</textarea></td></tr>
-
-<tr><td>stack_jumpifneqs_string</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>noice</textarea></td></tr>
-
-<tr><td>stack_subs</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>8-1</textarea></td></tr>
-
-<tr><td>stack_lts</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>truetruetruefalsefalsefalsefalsefalse</textarea></td></tr>
+<tr><td>call_undef</td><td>52</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
 </table>
-<hr><h4>ipp-2023-tests/interpret-only/stack_tests/stack_calc</h4><table><tr><th>Test name</th><th>Return code</th><th>Expected return code</th><th>Output</th><th>Expected output</th></tr>
-<tr><td>kalkulacka_STACK_rozsireni</td><td>32</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td><td><textarea readonly rows=5 cols=50>Zadejte vaši operaci (+,-,*,/) nebo e pro ukončení:Zadejte číslo 1:
-Zadejte číslo 2:
-Váš výsledek: 26
-Zadejte vaši operaci (+,-,*,/) nebo e pro ukončení:Zadejte číslo 1:
-Zadejte číslo 2:
-Váš výsledek: 12
-Zadejte vaši operaci (+,-,*,/) nebo e pro ukončení:Zadejte číslo 1:
-Zadejte číslo 2:
-Váš výsledek: 30
-Zadejte vaši operaci (+,-,*,/) nebo e pro ukončení:Zadejte číslo 1:
-Zadejte číslo 2:
-Váš výsledek: 5
-Zadejte vaši operaci (+,-,*,/) nebo e pro ukončení:</textarea></td></tr>
+<hr><h4>ipp-2023-tests/both/setchar</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>setchar_badtype3b</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_undef1d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_badtype3a</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_badtype1c</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_badtype1b</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_badtype2a</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_badtype3c</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_outrange2</td><td>58</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_type</td><td>0</td><td><textarea readonly rows=5 cols=50>string</textarea></td></tr>
+
+<tr><td>setchar_undef2d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_badtype1a</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar</td><td>0</td><td><textarea readonly rows=5 cols=50>abCdabCDAbCDABCD</textarea></td></tr>
+
+<tr><td>setchar_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_undef3d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_undef1a</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_undef2e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_unset3</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_undef3e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_undef2a</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_badtype2c</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_undef1e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_empty_char</td><td>58</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_badtype2b</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_outrange1</td><td>58</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_undef3a</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_undef1c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_undef3b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_undef3c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_undef1b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>setchar_undef2b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
 </table>
-<hr><h3 style="text-align: center; color:green">Passed tests</h3><hr><h4>ipp-2023-tests/interpret-only/jumps</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
-<tr><td>jumpForward</td><td>0</td><td><textarea readonly rows=5 cols=50>did jump</textarea></td></tr>
+<hr><h4>ipp-2023-tests/both/functionCalls</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>functions5</td><td>55</td><td><textarea readonly rows=5 cols=50>1</textarea></td></tr>
 
-<tr><td>nonexistLabel</td><td>52</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>functions12</td><td>0</td><td><textarea readonly rows=5 cols=50>120</textarea></td></tr>
 
-<tr><td>jumpifeq</td><td>0</td><td><textarea readonly rows=5 cols=50>5</textarea></td></tr>
+<tr><td>functions11</td><td>0</td><td><textarea readonly rows=5 cols=50>1223344556677889910hah</textarea></td></tr>
 
-<tr><td>duplicateLabel</td><td>52</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>functions10</td><td>55</td><td><textarea readonly rows=5 cols=50>12</textarea></td></tr>
 
-</table>
-<hr><h4>ipp-2023-tests/interpret-only/arithmetic</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
-<tr><td>stringAdd</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>functions8</td><td>0</td><td><textarea readonly rows=5 cols=50>110</textarea></td></tr>
 
-<tr><td>nil</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>functions9</td><td>55</td><td><textarea readonly rows=5 cols=50>12</textarea></td></tr>
 
-<tr><td>incorrectInt</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>functions4</td><td>55</td><td><textarea readonly rows=5 cols=50>1</textarea></td></tr>
 
-<tr><td>negativeNum</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>functions3</td><td>0</td><td><textarea readonly rows=5 cols=50>1231</textarea></td></tr>
 
-<tr><td>zeroDiv</td><td>57</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>functions</td><td>0</td><td><textarea readonly rows=5 cols=50>121</textarea></td></tr>
 
-<tr><td>correct</td><td>0</td><td><textarea readonly rows=5 cols=50>3</textarea></td></tr>
+<tr><td>functions6</td><td>0</td><td><textarea readonly rows=5 cols=50>12</textarea></td></tr>
 
-</table>
-<hr><h4>ipp-2023-tests/interpret-only/float_tests</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
-<tr><td>float_mul_float_int</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>functions2</td><td>0</td><td><textarea readonly rows=5 cols=50>121</textarea></td></tr>
 
-<tr><td>float_sub_float_int</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_move2</td><td>0</td><td><textarea readonly rows=5 cols=50>-0x1.175c57117ca21p+27</textarea></td></tr>
-
-<tr><td>float_read_wrongfloat</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>float_add_float_int</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>functions7</td><td>0</td><td><textarea readonly rows=5 cols=50>2345678910</textarea></td></tr>
 
 </table>
-<hr><h4>ipp-2023-tests/interpret-only/31</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
-<tr><td>fucked_up_xml</td><td>31</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<hr><h4>ipp-2023-tests/both/strlen</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>strlen_undef2b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_empty</td><td>0</td><td><textarea readonly rows=5 cols=50>0</textarea></td></tr>
+
+<tr><td>strlen_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_undef5</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_undef4</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_type</td><td>0</td><td><textarea readonly rows=5 cols=50>int</textarea></td></tr>
+
+<tr><td>strlen_undef6</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen</td><td>0</td><td><textarea readonly rows=5 cols=50>4</textarea></td></tr>
+
+<tr><td>strlen_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_undef3</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_unset3</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_undef2</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_undef3b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_undef5b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_undef6b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_undef5c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>strlen_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
 </table>
-<hr><h4>ipp-2023-tests/interpret-only/frames</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
-<tr><td>secondLF</td><td>0</td><td><textarea readonly rows=5 cols=50>510510</textarea></td></tr>
+<hr><h4>ipp-2023-tests/both/or</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>or_undef3e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>TFafterPush</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>defvarnoTF</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_undef2e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>pushEmpty</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_undef2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>popEmpty</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_undef1e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-</table>
-<hr><h4>ipp-2023-tests/interpret-only/xml_structure</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
-<tr><td>wrong_tag1</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_type</td><td>0</td><td><textarea readonly rows=5 cols=50>bool</textarea></td></tr>
 
-<tr><td>arg_quantity2</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_undef3</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>xml_fromat2</td><td>31</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>space_order</td><td>0</td><td><textarea readonly rows=5 cols=50>Hello</textarea></td></tr>
+<tr><td>or_undef1d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>wrong_opcode</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_undef3d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>xml_format1</td><td>31</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or2</td><td>0</td><td><textarea readonly rows=5 cols=50>falsetruetruetrue</textarea></td></tr>
 
-<tr><td>duplicate_order</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>zero_order</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>wrong_language</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_undef2d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>arg_quantity3</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_undef1b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>arg_order1</td><td>0</td><td><textarea readonly rows=5 cols=50>Hello</textarea></td></tr>
+<tr><td>or1</td><td>0</td><td><textarea readonly rows=5 cols=50>falsetruetruetrue</textarea></td></tr>
 
-<tr><td>negative_order</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>arg_quantity1</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_undef2b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>wrong_tag2</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_undef3c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>instruction_order1</td><td>0</td><td><textarea readonly rows=5 cols=50>Hello</textarea></td></tr>
+<tr><td>or_undef3b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-</table>
-<hr><h4>ipp-2023-tests/interpret-only/32</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
-<tr><td>missing_argument</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>missing_order</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_undef1c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>bad_root_element</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>string_order</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>bad_argument_tag</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>duplicit_order</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>missing_opcode</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>negative_order</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>unknown_element</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>unknown_element2</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
-
-<tr><td>write_test</td><td>32</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>or_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
 </table>
-<hr><h4>ipp-2023-tests/interpret-only/valid</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
-<tr><td>read</td><td>0</td><td><textarea readonly rows=5 cols=50>42just a string!true</textarea></td></tr>
+<hr><h4>ipp-2023-tests/both/lt</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>lt_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>label_call_return</td><td>0</td><td><textarea readonly rows=5 cols=50>Oh,yeah,motherfucker!</textarea></td></tr>
+<tr><td>lt_badtype_nil7</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>type</td><td>0</td><td><textarea readonly rows=5 cols=50>int</textarea></td></tr>
+<tr><td>lt_undef2e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>exit</td><td>42</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>lt_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>all_program_attributes</td><td>0</td><td><textarea readonly rows=5 cols=50>0</textarea></td></tr>
+<tr><td>lt_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>dprint</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+<tr><td>lt_undef2d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>write</td><td>0</td><td><textarea readonly rows=5 cols=50>0abc</textarea></td></tr>
+<tr><td>lt_badtype_nil2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>stack_test</td><td>0</td><td><textarea readonly rows=5 cols=50>ahoj světe</textarea></td></tr>
+<tr><td>lt_badtype_nil3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>defvar_move</td><td>0</td><td><textarea readonly rows=5 cols=50>42</textarea></td></tr>
+<tr><td>lt_undef3e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_undef1b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_undef1e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_undef2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_undef3c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_badtype_nil1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_undef3b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_undef3</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_undef1c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_undef1d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_undef2b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_badtype_nil4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_badtype_nil5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_badtype_nil6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_undef3d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>lt_type</td><td>0</td><td><textarea readonly rows=5 cols=50>bool</textarea></td></tr>
+
+<tr><td>lt</td><td>0</td><td><textarea readonly rows=5 cols=50>falsefalsetruefalsefalsetruefalsefalsefalsefalsefalsetruefalsefalse</textarea></td></tr>
+
+<tr><td>lt_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
 </table>
-<hr><h4>ipp-2023-tests/interpret-only/valid/order</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
-<tr><td>unordered_instructions</td><td>0</td><td><textarea readonly rows=5 cols=50>21cd0abf</textarea></td></tr>
+<hr><h4>ipp-2023-tests/both/stack</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>pops_undef_lf</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
 
-<tr><td>discontinuously_ordered_instructions</td><td>0</td><td><textarea readonly rows=5 cols=50>21cd0abf</textarea></td></tr>
+<tr><td>pushs_unset</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>pushs_undef</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>pops_empty_stack2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>pushs_pops</td><td>0</td><td><textarea readonly rows=5 cols=50>abc</textarea></td></tr>
+
+<tr><td>pops_undef_tf</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>pops_undef_tf2</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>pops_undef_gf</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>pops_empty_stack1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/jumpifeq</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>jumpifeq_undef3e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_undef3b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_undef3c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_undef2e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_undef2d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_undef3d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_undeflabel2</td><td>52</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq</td><td>0</td><td><textarea readonly rows=5 cols=50>11111111111111111111</textarea></td></tr>
+
+<tr><td>jumpifeq_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_undef2b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_undeflabel1</td><td>52</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_undef2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_undef3</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifeq_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/int2char</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>int2char_badvalue2</td><td>58</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_undef3</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_undef3b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_badvalue1</td><td>58</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_undef6</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_undef2b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_undef2</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_type</td><td>0</td><td><textarea readonly rows=5 cols=50>string</textarea></td></tr>
+
+<tr><td>int2char_undef5b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char</td><td>0</td><td><textarea readonly rows=5 cols=50>A</textarea></td></tr>
+
+<tr><td>int2char_undef6b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_undef5c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_undef4</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_unset3</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>int2char_undef5</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/exit</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>exit_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>exit1</td><td>4</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>exit_undef_lf2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>exit_undef_tf1</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>exit_unset</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>exit_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>exit_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>exit_undef_lf1</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>exit_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>exit_badvalue1</td><td>57</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>exit_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>exit_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>exit_undef_gf</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>exit2</td><td>4</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>exit_undef_tf2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>exit_badvalue2</td><td>57</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/add</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>add_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_undef3e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_undef2e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_undef1e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_negative</td><td>0</td><td><textarea readonly rows=5 cols=50>-5</textarea></td></tr>
+
+<tr><td>add_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_undef1d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_type</td><td>0</td><td><textarea readonly rows=5 cols=50>int</textarea></td></tr>
+
+<tr><td>add_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_undef3d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_undef2d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_undef1b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add</td><td>0</td><td><textarea readonly rows=5 cols=50>42</textarea></td></tr>
+
+<tr><td>add_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_undef2b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_undef2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_undef3b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_undef3</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_undef3c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>add_undef1c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/and</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>and_undef3</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_undef3c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_undef1b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_undef1c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_undef3b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_undef2d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_undef2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and2</td><td>0</td><td><textarea readonly rows=5 cols=50>falsefalsefalsetrue</textarea></td></tr>
+
+<tr><td>and_undef2e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_undef3e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_undef1d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_undef1e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and1</td><td>0</td><td><textarea readonly rows=5 cols=50>falsefalsefalsetrue</textarea></td></tr>
+
+<tr><td>and_undef3d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_undef2b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_type</td><td>0</td><td><textarea readonly rows=5 cols=50>bool</textarea></td></tr>
+
+<tr><td>and_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>and_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/type</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>type_undef6</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>type_bool1</td><td>0</td><td><textarea readonly rows=5 cols=50>bool</textarea></td></tr>
+
+<tr><td>type_int2</td><td>0</td><td><textarea readonly rows=5 cols=50>int</textarea></td></tr>
+
+<tr><td>type_undef2</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>type_bool2</td><td>0</td><td><textarea readonly rows=5 cols=50>bool</textarea></td></tr>
+
+<tr><td>type_int1</td><td>0</td><td><textarea readonly rows=5 cols=50>int</textarea></td></tr>
+
+<tr><td>type_nil1</td><td>0</td><td><textarea readonly rows=5 cols=50>nil</textarea></td></tr>
+
+<tr><td>type_undef6b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>type_undef3</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>type_undef5c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>type_undef5b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>type_string2</td><td>0</td><td><textarea readonly rows=5 cols=50>string</textarea></td></tr>
+
+<tr><td>type_unset1</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>type_string1</td><td>0</td><td><textarea readonly rows=5 cols=50>string</textarea></td></tr>
+
+<tr><td>type_undef2b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>type_undef4</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>type_unset3</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>type_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>type_undef5</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>type_undef3b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>type_nil2</td><td>0</td><td><textarea readonly rows=5 cols=50>nil</textarea></td></tr>
+
+<tr><td>type_type</td><td>0</td><td><textarea readonly rows=5 cols=50>string</textarea></td></tr>
+
+<tr><td>type_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>type_unset2</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/stri2int</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>stri2int_undef2d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_outrange1</td><td>58</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_undef3d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_undef1d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_outrange2</td><td>58</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_undef1e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_type</td><td>0</td><td><textarea readonly rows=5 cols=50>int</textarea></td></tr>
+
+<tr><td>stri2int</td><td>0</td><td><textarea readonly rows=5 cols=50>99</textarea></td></tr>
+
+<tr><td>stri2int_undef2e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_undef3e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_undef3</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_undef1c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_undef2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_undef3c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_undef2b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_undef1b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>stri2int_undef3b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/idiv</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>idiv_undef2e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_undef3e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_undef2d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_undef3b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_negative</td><td>0</td><td><textarea readonly rows=5 cols=50>1</textarea></td></tr>
+
+<tr><td>idiv</td><td>0</td><td><textarea readonly rows=5 cols=50>20</textarea></td></tr>
+
+<tr><td>idiv_undef1c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_undef1b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_undef1e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_undef3c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_undef2b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_undef1d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_undef3d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_zero</td><td>57</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_type</td><td>0</td><td><textarea readonly rows=5 cols=50>int</textarea></td></tr>
+
+<tr><td>idiv_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_undef3</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>idiv_undef2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/sub</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>sub_undef3b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_undef2b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_undef2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_undef1b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_undef3</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_undef1c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_undef3c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_negative</td><td>0</td><td><textarea readonly rows=5 cols=50>-1</textarea></td></tr>
+
+<tr><td>sub_undef1e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_type</td><td>0</td><td><textarea readonly rows=5 cols=50>int</textarea></td></tr>
+
+<tr><td>sub_undef1d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub</td><td>0</td><td><textarea readonly rows=5 cols=50>38</textarea></td></tr>
+
+<tr><td>sub_undef2e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_undef3e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_undef3d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>sub_undef2d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/frame</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>pushframe_undefined</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>popframe_empty_stack</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/read</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>read4</td><td>0</td><td><textarea readonly rows=5 cols=50>trueboolfalsebooltrueboolfalseboolfalsebool</textarea></td></tr>
+
+<tr><td>read_undef2b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>read_undef3b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>read_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>read1</td><td>0</td><td><textarea readonly rows=5 cols=50>123int456int789int</textarea></td></tr>
+
+<tr><td>read_undef2</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>read_undef3</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>read_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>read_badval</td><td>0</td><td><textarea readonly rows=5 cols=50>nilnilnil</textarea></td></tr>
+
+<tr><td>read3</td><td>0</td><td><textarea readonly rows=5 cols=50>stringabc ABCstring!@#$%^&*{}\string</textarea></td></tr>
+
+<tr><td>read2</td><td>0</td><td><textarea readonly rows=5 cols=50>0int-50int1234567890int</textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/jumpifneq</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>jumpifneq_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_undef3</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_undef3c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_undef3b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_undef2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_undeflabel2</td><td>52</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_undef2d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_undef2e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_undeflabel1</td><td>52</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_undef3e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_undef2b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_undef3d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq</td><td>0</td><td><textarea readonly rows=5 cols=50>11111111111111111111</textarea></td></tr>
+
+<tr><td>jumpifneq_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>jumpifneq_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/defvar</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>defvar_redef_lf1</td><td>52</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>defvar_redef_tf</td><td>52</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>defvar_undef_frame1</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>defvar_undef_frame2</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>defvar_redef_gf</td><td>52</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>defvar_redef_lf2</td><td>52</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>defvar_redef_lf3</td><td>52</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/eq</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>eq_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_undef1d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_undef2d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_undef3d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_undef2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq</td><td>0</td><td><textarea readonly rows=5 cols=50>falsetruefalsefalsefalsefalsefalsetruetruefalsefalsetruefalsefalsetruefalsefalsefalsefalsetrue</textarea></td></tr>
+
+<tr><td>eq_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_undef2e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_type</td><td>0</td><td><textarea readonly rows=5 cols=50>bool</textarea></td></tr>
+
+<tr><td>eq_undef3e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_undef3</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_undef1e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_undef3c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_undef1b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_undef1c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_undef3b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq_undef2b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>eq2</td><td>0</td><td><textarea readonly rows=5 cols=50>falsetruefalsefalsefalsefalsefalsetruetruefalsefalsetruefalsefalsetruefalsefalsefalsefalsetrue</textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/getchar</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>getchar_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_outrange2</td><td>58</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_undef2d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_undef1d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_undef2e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_undef2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_undef1b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_outrange1</td><td>58</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_undef3c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_undef3d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_undef3b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_undef1c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_undef3</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_type</td><td>0</td><td><textarea readonly rows=5 cols=50>string</textarea></td></tr>
+
+<tr><td>getchar_undef2b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_undef3e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar</td><td>0</td><td><textarea readonly rows=5 cols=50>c</textarea></td></tr>
+
+<tr><td>getchar_undef1e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>getchar_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/mul</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>mul_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_undef3d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_undef2e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_undef2d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_undef1c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_undef3b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_undef1d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_undef3c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_undef1b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul</td><td>0</td><td><textarea readonly rows=5 cols=50>80</textarea></td></tr>
+
+<tr><td>mul_undef3</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_undef2b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_undef2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_undef1e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_negative</td><td>0</td><td><textarea readonly rows=5 cols=50>6</textarea></td></tr>
+
+<tr><td>mul_undef3e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>mul_type</td><td>0</td><td><textarea readonly rows=5 cols=50>int</textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/gt</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>gt_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_undef2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_undef1c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_badtype_nil3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt</td><td>0</td><td><textarea readonly rows=5 cols=50>truefalsefalsetruetruefalsetruefalsefalsefalsefalsefalsetruefalse</textarea></td></tr>
+
+<tr><td>gt_undef3</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_badtype_nil7</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_undef3c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_undef2b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_badtype_nil6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_undef3b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_undef1b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_badtype_nil2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_undef3d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_undef2d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_badtype_nil4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_badtype_nil5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_undef2e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_undef1d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_type</td><td>0</td><td><textarea readonly rows=5 cols=50>bool</textarea></td></tr>
+
+<tr><td>gt_undef3e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_badtype_nil1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>gt_undef1e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/not</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>not_unset3</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_undef3</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_undef2</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_type</td><td>0</td><td><textarea readonly rows=5 cols=50>boolbool</textarea></td></tr>
+
+<tr><td>not_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_undef2b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_undef5</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_undef3b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_undef4</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_undef6</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_undef6b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not_undef5c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>not</td><td>0</td><td><textarea readonly rows=5 cols=50>falsetruefalsetrue</textarea></td></tr>
+
+<tr><td>not_undef5b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/concat</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>concat_undef2b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_undef1e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_undef3d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_undef3e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_badtype6</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_undef1d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_undef3b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_undef1b</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_undef3</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_badtype2</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat</td><td>0</td><td><textarea readonly rows=5 cols=50>abcefg</textarea></td></tr>
+
+<tr><td>concat_undef1c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_undef2</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_badtype3</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_undef3c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_undef2e</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_undef2d</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_badtype5</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_empty</td><td>0</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_badtype4</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_badtype1</td><td>53</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>concat_type</td><td>0</td><td><textarea readonly rows=5 cols=50>string</textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/move</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>move_type</td><td>0</td><td><textarea readonly rows=5 cols=50>intstringboolnil</textarea></td></tr>
+
+<tr><td>move_undef5c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>move_undef6</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>move_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>move_undef3b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>move_unset3</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>move_undef5</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>move_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>move2</td><td>0</td><td><textarea readonly rows=5 cols=50>5abcfalse</textarea></td></tr>
+
+<tr><td>move_undef2b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>move_undef4</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>move_undef6b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>move_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>move3</td><td>0</td><td><textarea readonly rows=5 cols=50>5abcfalse</textarea></td></tr>
+
+<tr><td>move_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>move_undef5b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>move_undef3</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>move_undef2</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>move1</td><td>0</td><td><textarea readonly rows=5 cols=50>5abcfalse</textarea></td></tr>
+
+</table>
+<hr><h4>ipp-2023-tests/both/write</h4><table><tr><th>Test name</th><th>Return code</th><th>Output</th></tr>
+<tr><td>write_undef3b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>write_undef2</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>write_undef3</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>write_unset1</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>write_undef2c</td><td>55</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>write_undef2b</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>write_undef1</td><td>54</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>write_unset3</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>write_unset2</td><td>56</td><td><textarea readonly rows=5 cols=50></textarea></td></tr>
+
+<tr><td>write</td><td>0</td><td><textarea readonly rows=5 cols=50>abcefg123456truefalse
+Hello#World
+</textarea></td></tr>
 
 </table>
 </body></html>
