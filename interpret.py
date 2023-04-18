@@ -195,6 +195,11 @@ class Interpreter:
     
     # Function interprets instructions with zero arguments
     def interpretZero(self, instruction, position):
+        
+        if instruction.code == "CLEARS":
+            self.stack.clear();
+            return position;
+        
         # Return checks number of calls and pops last given call from stack
         if instruction.code == "RETURN":
             if len(self.calls) == 0:
@@ -231,10 +236,498 @@ class Interpreter:
         elif instruction.code == "BREAK":
             sys.stderr.write(f"Instruction order: {instruction.order}, actual position: {position}\nFrames - GF: {self.GF}\nTF: {self.TF}\nLF: {self.TF}")
             return position
+        
+        # Following instructions are for STACK extension, they're similar to normal instructions
+        elif instruction.code == "NOTS":
+            
+            # Difference between normal and STACK instruction is arguments are popped from stack
+            arg2 = self.stack.pop();
+            
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if op1 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op1 = arg2
+            if not op1.checkArgType("BOOL"):
+                sys.stderr.write("Cannot use Not on different type than bool")
+                sys.exit(53)
+
+            if op1.text.upper() == "TRUE":
+                result = "false"
+            elif op1.text.upper() == "FALSE":
+                result = "true"
+            else:
+                sys.stderr.write("Bool have values true or false")
+                sys.exit(53)
+                
+            var = Argument("bool", result)
+            self.stack.append(var)
+            return position
+        
+        elif instruction.code == "INT2CHARS":
+                
+            arg2 = self.stack.pop();
+
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if op1 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op1 = arg2
+            if not op1.checkArgType("INT"):
+                sys.stderr.write("Cannot use Int2char with with other type than int")
+                sys.exit(53)
+
+            try:
+                result = chr(self.intConversion(op1.text))
+            except ValueError as e:
+                sys.stderr.write("Value cannot be converted to char")
+                sys.exit(58)
+
+            var = Argument("string", result)
+            self.stack.append(var)
+            return position
+        
+        elif instruction.code == "STRI2INTS":
+            
+            arg3 = self.stack.pop();
+            arg2 = self.stack.pop();
+
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if op1 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op1 = arg2
+            if not op1.checkArgType("STRING"):
+                sys.stderr.write("Cannot use Stri2int with different type than int and string")
+                sys.exit(53)
+
+            if arg3.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg3)
+                if op2 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op2 = arg3
+
+            if not op2.checkArgType("INT"):
+                sys.stderr.write("Cannot use Stri2int with different type than int and string")
+                sys.exit(53)
+
+            if self.intConversion(op2.text) < 0 or self.intConversion(op2.text) > len(op1.text) - 1:
+                sys.stderr.write("Index out of range")
+                sys.exit(58)
+
+            # Takes one character on given index and changes it to integer
+            result = ord(op1.text[self.intConversion(op2.text)])
+            var = Argument("int", result)
+            self.stack.append(var)
+            return position
+        
+        elif instruction.code == "ADDS":
+
+            arg3 = self.stack.pop();
+            arg2 = self.stack.pop();
+            
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if op1 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op1 = arg2
+
+            if not op1.checkArgType("INT"):
+                sys.stderr.write("Cannot use Add on different type than int")
+                sys.exit(53)
+
+            if arg3.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg3)
+                if op2 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op2 = arg3
+            
+
+            if not op2.checkArgType("INT"):
+                sys.stderr.write("Cannot use Add on different type than int")
+                sys.exit(53)
+
+            try:
+                int(op2.text)
+            except ValueError as e:
+                sys.stderr.write("Invalid int")
+                sys.exit(32)
+            try:
+                int(op1.text)
+            except ValueError as e:
+                sys.stderr.write("Invalid int")
+                sys.exit(32)
+            
+            result = self.intConversion(op1.text) + self.intConversion(op2.text)
+            var = Argument("int", result)
+            self.stack.append(var)
+            return position
+        
+        elif instruction.code == "SUBS":
+    
+            arg3 = self.stack.pop();
+            arg2 = self.stack.pop();
+            
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if op1 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op1 = arg2
+
+            if not op1.checkArgType("INT"):
+                sys.stderr.write("Cannot use Add on different type than int")
+                sys.exit(53)
+
+            if arg3.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg3)
+                if op2 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op2 = arg3
+    
+            if not op2.checkArgType("INT"):
+                sys.stderr.write("Cannot use Add on different type than int")
+                sys.exit(53)
+
+            try:
+                int(op2.text)
+            except ValueError as e:
+                sys.stderr.write("Invalid int")
+                sys.exit(32)
+            try:
+                int(op1.text)
+            except ValueError as e:
+                sys.stderr.write("Invalid int")
+                sys.exit(32)
+
+            result = self.intConversion(op1.text) - self.intConversion(op2.text)
+            var = Argument("int", result)
+            self.stack.append(var)
+            return position
+        
+        elif instruction.code == "MULS":
+          
+            arg3 = self.stack.pop();
+            arg2 = self.stack.pop();
+            
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if op1 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op1 = arg2
+
+            if not op1.checkArgType("INT"):
+                sys.stderr.write("Cannot use MUL on different type than int")
+                sys.exit(53)
+
+            if arg3.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg3)
+                if op2 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op2 = arg3
+                
+            if not op2.checkArgType("INT"):
+                sys.stderr.write("Cannot use Add on different type than int")
+                sys.exit(53)
+
+            try:
+                int(op2.text)
+            except ValueError as e:
+                sys.stderr.write("Invalid int")
+                sys.exit(32)
+            try:
+                int(op1.text)
+            except ValueError as e:
+                sys.stderr.write("Invalid int")
+                sys.exit(32)
+
+            result = self.intConversion(op1.text) * self.intConversion(op2.text)
+            var = Argument("int", result)
+            self.stack.append(var)
+            return position
+        
+        elif instruction.code == "IDIVS":
+         
+            arg3 = self.stack.pop();
+            arg2 = self.stack.pop();
+
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if op1 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op1 = arg2
+
+            if not op1.checkArgType("INT"):
+                sys.stderr.write("Cannot use IDIV on different type than int")
+                sys.exit(53)
+
+            if arg3.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg3)
+                if op2 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op2 = arg3
+
+            if not op2.checkArgType("INT"):
+                sys.stderr.write("Cannot use IDIV on different type than int")
+                sys.exit(53)
+
+            try:
+                int(op2.text)
+            except ValueError as e:
+                sys.stderr.write("Invalid int")
+                sys.exit(32)
+            try:
+                int(op1.text)
+            except ValueError as e:
+                sys.stderr.write("Invalid int")
+                sys.exit(32)
+
+            try:
+                result = self.intConversion(op1.text) // self.intConversion(op2.text)
+            except ZeroDivisionError as e:
+                sys.stderr.write(f"ZeroDivisionError {e}")
+                sys.exit(57)
+
+            var = Argument("int", result)
+            self.stack.append(var)
+            return position
+        elif instruction.code == "LTS":
+            
+            arg3 = self.stack.pop();
+            arg2 = self.stack.pop();
+            
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if( op1 == None):
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op1 = arg2
+   
+            if arg3.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg3)
+                if( op2 == None):
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op2 = arg3
+
+            # LT cannot have arguments with type of nil
+            if op1.checkArgType("NIL") or op2.checkArgType("NIL"):
+                sys.stderr.write("Cannot use LT with nil")
+                sys.exit(53)
+            
+            # Result is given by type of the given value
+            if op1.checkArgType("BOOL") and op2.checkArgType("BOOL"):
+                if op1.text == "true" and op2.text == "false":
+                    result = 'false'
+                elif op1.text == "false" and op2.text == "true":
+                    result = 'true'
+                else:
+                    result = 'false'
+            elif op1.checkArgType("INT") and op2.checkArgType("INT") :
+                    result = str(self.intConversion(op1.text) < self.intConversion(op2.text)).lower()
+            elif op1.checkArgType("STRING") and op2.checkArgType("STRING"):
+                if op1.text == None and op2.text != None:
+                    result = 'true'
+                elif op1.text != None and op2.text == None:
+                    result = 'false'
+                else:
+                    result = str(op1.text < op2.text).lower()
+            else:
+                sys.stderr.write("Cannot use Getchar with different types")
+                sys.exit(53)
+
+            var = Argument("bool", result)
+            self.stack.append(var)
+            return position
+        elif instruction.code == "GTS":
+
+            arg3 = self.stack.pop();
+            arg2 = self.stack.pop();
+            
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if op1 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op1 = arg2
+
+            if arg3.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg3)
+                if op2 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op2 = arg3
+
+            if op1.checkArgType("NIL") or op2.checkArgType("NIL") == "nil":
+                sys.stderr.write("Cannot use LT with nil")
+                sys.exit(53)
+
+            if op1.checkArgType("BOOL") and op2.checkArgType("BOOL"):
+                if op1.text == "true" and op2.text == "false":
+                    result = 'true'
+                elif op1.text == "false" and op2.text == "true":
+                    result = 'false'
+                else:
+                    result = 'false'
+            elif op1.checkArgType("INT") and op2.checkArgType("INT") :
+                result = str(self.intConversion(op1.text) > self.intConversion(op2.text)).lower()
+            elif op1.checkArgType("STRING") and op2.checkArgType("STRING"):
+                if op1.text == None and op2.text != None:
+                    result = 'false'
+                elif op1.text != None and op2.text == None:
+                    result = 'true'
+                else:
+                    result = str(op1.text > op2.text).lower()
+            else:
+                sys.stderr.write("Cannot use Getchar with different types")
+                sys.exit(53)
+
+            var = Argument("bool", result)
+            self.stack.append(var)
+            return position
+        
+        elif instruction.code == "EQS":
+    
+            arg3 = self.stack.pop();
+            arg2 = self.stack.pop();
+
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if( op1 == None):
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op1 = arg2
+
+
+            if arg3.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg3)
+                if( op2 == None):
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op2 = arg3
+
+            if op1.type == op2.type or op1.checkArgType("NIL") or op2.checkArgType("NIL"):
+                pass
+            else:
+                sys.stderr.write("Cannot use EQ with different types")
+                sys.exit(53)
+            
+            if op1.text == op2.text:
+                var = Argument("bool", "true")
+                self.stack.append(var)
+            else:
+                var = Argument("bool", "false")
+                self.stack.append(var)
+            return position
+            
+        elif instruction.code == "ANDS":
+                
+            arg3 = self.stack.pop();
+            arg2 = self.stack.pop();
+
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if( op1 == None):
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op1 = arg2
+
+            if not op1.checkArgType("BOOL"):
+                sys.stderr.write("Cannot use And on different type than bool")
+                sys.exit(53)
+
+            if arg3.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg3)
+                if( op2 == None):
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op2 = arg3
+
+            if not op2.checkArgType("BOOL"):
+                sys.stderr.write("Cannot use And on different type than bool")
+                sys.exit(53)
+
+            # If both operands have proper types, make logical AND
+            if op1.text == "true" and op2.text == "true":
+                var = Argument("bool", "true")
+                self.stack.append(var)
+            else:
+                var = Argument("bool", "false")
+                self.stack.append(var)
+            return position
+        
+        elif instruction.code == "ORS":
+
+            arg3 = self.stack.pop();
+            arg2 = self.stack.pop();
+                
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if op1 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op1 = arg2
+
+            if not op1.checkArgType("BOOL"):
+                sys.stderr.write("Cannot use And on different type than bool")
+                sys.exit(53)
+
+            if arg3.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg3)
+                if op2 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op2 = arg3
+
+            if not op2.checkArgType("BOOL"):
+                sys.stderr.write("Cannot use And on different type than bool")
+                sys.exit(53)
+
+            # If both operands have proper types, make logical OR
+            if op1.text == "true" or op2.text == "true":
+                var = Argument("bool", "true")
+                self.stack.append(var)
+            else:
+                var = Argument("bool", "false")
+                self.stack.append(var)
+            return position
         else:
             sys.stderr.write("Wrong number of arguments")
             sys.exit(32)
-
+            
     # Interprets instruction with one argument
     def interpretOne(self, instruction, position):
         # Checks if argument has right text and then stores it in a variable, simplifies working with argument
@@ -243,8 +736,100 @@ class Interpreter:
             sys.exit(32)
         arg1 = instruction.argdict['arg1']
 
+        if instruction.code == "JUMPIFEQS":
+            if not arg1.checkArgType("LABEL"):
+                sys.stderr.write(f"Instruction {instruction.code} has bad arguments")
+                sys.exit(32)
+                
+            arg3 = self.stack.pop()
+            arg2 = self.stack.pop()
+            
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if op1 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op1 = arg2
+
+            if arg3.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg3)
+                if op2 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op2 = arg3
+            if op1.type != op2.type and op1.type != "nil" and op2.type != "nil":
+                sys.stderr.write("Cannot use Jumpifeq with different types")
+                sys.exit(53)   
+                      
+            #If types are both int, we need to convert both to make proper condition
+            if op1.checkArgType("INT") and op2.checkArgType("INT"):
+                operand1 = self.intConversion(op1.text)
+                operand2 = self.intConversion(op2.text)
+            else: 
+                operand1 = op1.text
+                operand2 = op2.text
+
+            if arg1.text in self.labels.keys():
+                    label = self.labels[arg1.text]
+            else:
+                sys.stderr.write("Label doesn't exist")
+                sys.exit(52)
+                            
+            # Returns label if condition is met
+            if operand1 == operand2:
+                    return label
+            return position
+        
+        elif instruction.code == "JUMPIFNEQS":
+            if not arg1.checkArgType("LABEL"):
+                sys.stderr.write(f"Instruction {instruction.code} has bad arguments")
+                sys.exit(32)
+
+            arg3 = self.stack.pop();
+            arg2 = self.stack.pop();
+            
+            if arg2.checkArgType("VAR"):
+                op1 = self.getFromFrame(arg2)
+                if op1 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op1 = arg2
+
+            if arg3.checkArgType("VAR"):
+                op2 = self.getFromFrame(arg3)
+                if op2 == None:
+                    sys.stderr.write("Missing value")
+                    sys.exit(56)
+            else:
+                op2 = arg3
+
+            if op1.type != op2.type and op1.type != "nil" and op2.type != "nil":
+                sys.stderr.write("Cannot use Jumpifneqs with different types")
+                sys.exit(53)
+
+            if op1.checkArgType("INT") and op2.checkArgType("INT"):
+                operand1 = self.intConversion(op1.text)
+                operand2 = self.intConversion(op2.text)
+            else: 
+                operand1 = op1.text
+                operand2 = op2.text
+
+            if arg1.text in self.labels.keys():
+                label = self.labels[arg1.text]
+            else:
+                sys.stderr.write("Cannot jump to the label")
+                sys.exit(52)
+            
+            # If condition is not met, returns label position
+            if operand1 != operand2:
+                return label
+            return position     
+    
         # Creates a Variable and stores it in a right Frame, because there's no value, there's no point in using setToFrame
-        if instruction.code == "DEFVAR":
+        elif instruction.code == "DEFVAR":
             if not arg1.checkArgType("VAR"):
                 sys.stderr.write(f"Instruction {instruction.code} requires type var")
                 sys.exit(53)
@@ -1254,7 +1839,7 @@ class Interpreter:
             # If condition is not met, returns label position
             if operand1 != operand2:
                 return label
-            return position
+            return position        
         else:
             sys.stderr.write("Wrong number of arguments")
             sys.exit(32)
@@ -1382,7 +1967,8 @@ if __name__ == "__main__":
             "DEFVAR", "POPS", "CALL", "LABEL", "JUMP", "PUSHS", "WRITE", "EXIT", "DPRINT",
             "MOVE", "INT2CHAR", "STRLEN", "TYPE", "READ", "NOT", "ADD", "SUB",
             "MUL", "IDIV", "LT", "GT", "EQ", "AND", "OR", "STRI2INT", "CONCAT",
-            "GETCHAR", "SETCHAR", "JUMPIFEQ", "JUMPIFNEQ"]:
+            "GETCHAR", "SETCHAR", "JUMPIFEQ", "JUMPIFNEQ", "MULS", "ADDS", "SUBS", "IDIVS", "CLEARS", "LTS", "GTS", "EQS", "ANDS",
+            "ORS", "NOTS", "INT2CHARS", "STRI2INTS", "JUMPIFEQS", "JUMPIFNEQS"]:
             sys.stderr.write("Neznámá nebo špatně zapsaná instrukce")
             sys.exit(32)
 
